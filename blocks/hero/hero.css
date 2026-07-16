@@ -152,6 +152,23 @@
       text-align: center;
     }
   }
+
+  /* Compact variant — shorter hero for interior / landing pages. */
+  &.compact {
+    --min-height: 240px;
+  }
+
+  /* Text-only variant — no background image; brand band with inverse text,
+     for section-intro heroes. */
+  &.text-only {
+    background-color: var(--color-brand);
+    color: var(--color-light);
+
+    .hero-foreground {
+      background: none;
+      min-height: 0;
+    }
+  }
 }
 
 @media (width >= 600px) {

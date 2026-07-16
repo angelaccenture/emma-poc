@@ -77,6 +77,24 @@
       align-items: start;
     }
   }
+
+  /* Stat variant — a large stat/figure column beside supporting copy
+     (e.g. "36 Years / #1 Best Hospitals" next to intro text). The first
+     column reads as the emphasized figure. */
+  &.stat {
+    --columns-gap: var(--spacing-xl);
+
+    .col-1 {
+      color: var(--color-brand);
+      text-align: center;
+
+      :first-child {
+        font-family: var(--heading-font-family);
+        font-size: var(--heading-font-size-xxl);
+        line-height: 1;
+      }
+    }
+  }
 }
 
 @media (width >= 900px) {

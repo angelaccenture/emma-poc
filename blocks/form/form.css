@@ -1,0 +1,42 @@
+/* form (PLACEHOLDER) — newsletter signup stub, token-driven. */
+.form {
+  padding: var(--spacing-xl) var(--spacing-l);
+  background-color: var(--color-shaded);
+}
+
+.form .form-intro {
+  margin: 0 0 var(--spacing-m);
+  font-family: var(--subhead-font-family);
+  font-size: var(--body-font-size-l);
+  color: var(--color-headings);
+}
+
+.form .form-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-s);
+}
+
+.form .form-fields input {
+  flex: 1 1 200px;
+  padding: var(--spacing-s) var(--spacing-m);
+  font: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: var(--button-radius);
+  background-color: var(--color-background);
+}
+
+.form .form-submit {
+  padding: var(--button-padding);
+  border: 0;
+  border-radius: var(--button-radius);
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+  font-family: var(--button-font-family);
+  font-weight: var(--button-font-weight);
+  cursor: pointer;
+}
+
+.form .form-submit:hover {
+  background-color: var(--button-primary-bg-hover);
+}

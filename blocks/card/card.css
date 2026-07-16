@@ -70,6 +70,10 @@
   /* Variations */
   &.center {
     text-align: center;
+
+    .card-cta-container {
+      justify-content: center;
+    }
   }
 
   &.quiet {
@@ -81,5 +85,75 @@
     .card-content-container * {
       margin: 6px;
     }
+  }
+
+  /* Icon variant — small icon + text, no shadow, transparent, left-aligned
+     (Plan Your Care, Quick-links). Icon authored as the first picture/img. */
+  &.icon {
+    box-shadow: initial;
+    background-color: initial;
+
+    .card-picture-container {
+      position: static;
+      padding: 0;
+      width: 48px;
+      height: 48px;
+
+      picture,
+      img {
+        position: static;
+        width: 48px;
+        height: 48px;
+        object-fit: contain;
+        opacity: 1;
+      }
+    }
+
+    .card-content-container {
+      padding-inline: 0;
+    }
+
+    &:hover {
+      transform: none;
+      box-shadow: initial;
+    }
+  }
+
+  /* Accent variant — brand-red surface, white text, centered
+     (Support cards, Help #EndCancer). */
+  &.accent {
+    background-color: var(--color-brand);
+    color: var(--color-light);
+    text-align: center;
+
+    a {
+      color: var(--color-light);
+    }
+
+    .card-cta-container {
+      justify-content: center;
+    }
+
+    &:hover {
+      background-color: var(--color-brand-hover);
+    }
+  }
+
+  /* Alert variant — colored notice surface, icon + text, left-aligned
+     (World Cup / Donate Blood banners). Defaults to shaded; set a specific
+     background per-instance via section-metadata when needed. */
+  &.alert {
+    background-color: var(--color-shaded);
+    color: var(--color-text);
+    text-align: start;
+
+    .card-cta-container {
+      justify-content: start;
+    }
+  }
+
+  /* Compact variant — tighter padding for dense lists. */
+  &.compact {
+    --spacing-default: var(--spacing-m);
   }
 }

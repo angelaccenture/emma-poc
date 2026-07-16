@@ -1,0 +1,39 @@
+/* search-widget (PLACEHOLDER) — styled static stub, token-driven. */
+.search-widget {
+  padding: var(--spacing-l);
+  background-color: var(--color-shaded);
+  border-radius: var(--card-border-radius);
+}
+
+.search-widget .search-widget-title {
+  margin: 0 0 var(--spacing-m);
+  font-family: var(--subhead-font-family);
+  font-size: var(--heading-font-size-m);
+  color: var(--color-headings);
+}
+
+.search-widget .search-widget-field {
+  display: flex;
+}
+
+.search-widget .search-widget-field input {
+  flex: 1;
+  padding: var(--spacing-s) var(--spacing-m);
+  font: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: var(--button-radius);
+  background-color: var(--color-background);
+}
+
+.search-widget .search-widget-browse {
+  display: inline-block;
+  margin-top: var(--spacing-m);
+  color: var(--color-link);
+  font-family: var(--subhead-font-family);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+}
+
+.search-widget .search-widget-browse:hover {
+  text-decoration: underline;
+}
