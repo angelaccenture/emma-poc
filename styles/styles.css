@@ -220,9 +220,13 @@ a {
 /* sections */
 .section {
   display: block;
+}
 
-  /* Constrain text and block content to the MD Anderson content column
-     (1440px, 72px side padding), centered. */
+/* Constrain page-body content to the MD Anderson content column (1440px,
+   72px side padding), centered. Scoped to main so the header/footer
+   fragments — which have their own .section/.default-content — stay
+   full-width and use their own chrome layout. */
+main .section {
   > .default-content,
   > .block-content {
     max-width: var(--content-max-width);
