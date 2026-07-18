@@ -343,10 +343,10 @@
     text-align: left;
   }
 
-  /* Text sits in the left half of the hero (image fills the right). */
+  /* Text sits in the left ~60% of the hero (image fills the right). */
   .hero-heading,
   .fg-text p {
-    max-width: 50%;
+    max-width: 60%;
   }
 
   /* Authored order: heading → name → role → CTA link (matches the live
