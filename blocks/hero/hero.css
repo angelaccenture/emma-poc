@@ -376,9 +376,10 @@
     margin-top: var(--spacing-m);
   }
 
-  /* Rule under the name/role group — the caption line just before the CTA
-     gets a hugging white underline (matches the live slide's border). */
-  .fg-text p:not(:has(a)):has(+ p:has(a)) {
+  /* Rule under the name/role group — the role line (2nd caption after the
+     heading) gets a hugging white underline (matches the live slide border).
+     Authored order: heading → name → role → CTA. */
+  .hero-heading + p + p:not(:has(a)) {
     display: inline-block;
     padding-bottom: 15px;
     border-bottom: 1px solid var(--color-light);
