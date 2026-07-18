@@ -404,6 +404,7 @@
       font-size: 1.5rem; /* 24px */
       font-weight: var(--font-weight-regular);
       line-height: 1.3;
+      text-align: left;
       text-decoration: none;
 
       /* trailing full arrow (no icon-font dependency) */
