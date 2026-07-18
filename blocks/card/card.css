@@ -115,12 +115,15 @@
       padding-bottom: 56.25%; /* 16:9 image */
     }
 
-    .card-content-container {
+    /* Anchor on the content cell directly — the deployed card.js doesn't
+       always add .card-content-container, so target the 2nd inner cell. */
+    .card-inner > div:not(.card-picture-container) {
       padding: var(--spacing-s) 0 0;
 
       h2,
       h3,
       h4 {
+        margin: 0;
         font-family: var(--font-family-heading);
         font-size: 1.5rem; /* 24px */
         font-weight: var(--font-weight-bold);
@@ -135,11 +138,11 @@
         line-height: 1.35;
         color: #3f3d3d;
       }
-    }
 
-    /* The whole card links; hide the authored inline CTA. */
-    .card-cta-container {
-      display: none;
+      /* The whole card links; hide the authored inline CTA paragraph. */
+      p:last-child:has(a) {
+        display: none;
+      }
     }
   }
 
