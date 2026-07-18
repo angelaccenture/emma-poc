@@ -107,6 +107,9 @@
   --color-dark: rgb(0 0 0);
   --color-text: light-dark(var(--color-dark), var(--color-light));
   --color-mda-red: #da291c;           /* MD Anderson brand red (link + accent) */
+  --color-mda-band-gray: #f2f3f4;     /* alternating section band background */
+  --color-mda-purple: #783491;        /* promo tile purple */
+  --color-mda-promo-black: #000;      /* promo tile black */
   --color-link: var(--color-mda-red);
 
   /* ── Microsoft brand palette (FEDERATED — inherited by all child sites) ──
