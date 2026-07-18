@@ -30,13 +30,8 @@ header {
   --logo-height: 56px;
 
   display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: relative;
   z-index: 1000;
-  overflow: hidden;
-  max-height: var(--header-height);
   background-color: #fff;
   font-family: var(--mda-body-font);
 
