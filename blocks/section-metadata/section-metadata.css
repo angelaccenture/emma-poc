@@ -120,6 +120,13 @@
     }
   }
 
+  /* split-rule — a thin vertical divider between grid columns. Pairs with a
+     2-col grid (Grid: 2). The rule sits in the column gap, full content height.
+     Hidden on mobile where the grid collapses to a single column. */
+  &.split-rule .block-content {
+    position: relative;
+  }
+
   &.has-background {
     position: relative;
 
@@ -159,6 +166,33 @@
     &.grid-2 .block-content {
       display: grid;
       grid-template-columns: repeat(var(--grid-size), 1fr);
+    }
+
+    /* split-rule layout: everything stacks in the left column; the LAST child
+       becomes a single tall panel in the right column. Position-based, so it
+       stays block-agnostic. */
+    &.split-rule .block-content {
+      align-items: start;
+    }
+
+    &.split-rule .block-content > :not(:last-child) {
+      grid-column: 1;
+    }
+
+    &.split-rule .block-content > :last-child {
+      grid-column: 2;
+      grid-row: 1 / span 99;
+    }
+
+    &.split-rule .block-content::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 1px;
+      background-color: var(--color-gray-300, #d0d0ce);
+      transform: translateX(-50%);
     }
   }
 }

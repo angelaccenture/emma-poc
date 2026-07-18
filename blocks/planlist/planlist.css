@@ -1,0 +1,100 @@
+/* planlist — MD Anderson "Plan Your Care" list.
+   Heading + clickable rows (uppercase title, gray description, trailing red
+   arrow-circle), thin rules between rows, footer link. Values from the live
+   site: 14px Univers uppercase title, 14px gray body, red arrow. */
+.planlist {
+  --planlist-rule: #d0d0ce;
+  --planlist-arrow: var(--color-mda-red);
+}
+
+.planlist .planlist-title {
+  margin: 0 0 var(--spacing-m);
+  font-family: var(--font-family-heading);
+  font-size: 2.25rem; /* 36px serif, matches section headings */
+  font-weight: var(--font-weight-regular);
+  color: var(--color-headings);
+}
+
+.planlist .planlist-item {
+  position: relative;
+  display: block;
+  padding: var(--spacing-m) 48px var(--spacing-m) 0;
+  border-top: 1px solid var(--planlist-rule);
+  color: inherit;
+  text-decoration: none;
+
+  &:last-of-type {
+    border-bottom: 1px solid var(--planlist-rule);
+  }
+
+  /* trailing red arrow-circle, vertically centered — white chevron glyph on a
+     red disc (background-image, no icon-font dependency). */
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 28px;
+    height: 28px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background-color: var(--planlist-arrow);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 14px;
+    transition: transform 0.15s ease;
+  }
+
+  &:hover::after {
+    transform: translateY(-50%) translateX(3px);
+  }
+}
+
+.planlist .planlist-item-title {
+  display: block;
+  font-family: var(--font-family);
+  font-size: 0.875rem; /* 14px */
+  font-weight: var(--font-weight-regular);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-headings);
+}
+
+.planlist .planlist-item-desc {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.5;
+  color: var(--search-input-text, #605d5d);
+}
+
+.planlist .planlist-item:hover .planlist-item-title {
+  text-decoration: underline;
+}
+
+/* Footer link — red bold with a trailing arrow. */
+.planlist .planlist-footer {
+  margin: var(--spacing-m) 0 0;
+}
+
+.planlist .planlist-footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-link);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+
+  &::after {
+    content: "";
+    width: 1em;
+    height: 1em;
+    background-color: currentcolor;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12h15M13 6l6 6-6 6' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

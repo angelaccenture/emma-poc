@@ -17,6 +17,7 @@
   font-size: 1.75rem; /* ~28px mobile; up to 36px desktop below */
   font-weight: var(--font-weight-regular);
   color: var(--color-headings);
+  text-align: center;
 }
 
 /* Section-heading icon — an 88px brand-colored circle with a white glyph,
@@ -35,6 +36,7 @@
   width: 88px;
   height: 88px;
   margin-bottom: var(--spacing-s);
+  margin-inline: auto;
   border-radius: 50%;
   background-color: var(--search-icon-color);
   background-repeat: no-repeat;
