@@ -1,57 +1,168 @@
+/* ── MD Anderson footer chrome ──────────────────────────────────────────────
+   Visual design migrated from mdanderson.org's global footer.
+   Structure (top → bottom), all painted full-bleed:
+     1. .section            → white mega-footer with link columns
+     2. .section-legal      → light-gray utility/legal link bar
+     3. .section-copyright  → black bottom bar (mission + copyright)
+   Values are the exact computed styles extracted from the live source. */
+
 footer {
+  /* Footer-scoped brand tokens (MD Anderson healthcare design system).
+     Kept local so the federated Microsoft palette in tokens.css is untouched. */
+  --mda-red: #da291c;                 /* rgb(218 41 28) — social icons, hover, accents */
+  --mda-bar-dark: #000;               /* black subscribe / bottom bar */
+  --mda-bar-gray: rgb(242 243 244);   /* light-gray utility bar */
+  --mda-link: #000;                   /* resting footer link color */
+  --mda-copyright: rgb(188 190 192);  /* muted copyright gray */
+
+  margin: 0;
+  background-color: #fff;
+  font-family: "Trebuchet MS", var(--font-family), sans-serif;
+  color: var(--mda-link);
+
   a {
     text-decoration: none;
+    color: var(--mda-link);
   }
 
+  a:hover {
+    color: var(--mda-red);
+    text-decoration: underline;
+  }
+
+  /* Full-bleed: footer bars span the viewport, content is padded internally. */
   .footer-content {
+    max-width: 100%;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.3;
+  }
+
+  /* Neutralize the global .section > .default-content max-width so bars fill. */
+  .section > .default-content {
     max-width: var(--grid-container-width);
-    margin: 48px auto;
-    font-size: 14px;
+    margin: 0 auto;
   }
 
-  .section-legal ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  /* ── 1. Mega-footer link columns (white) ───────────────────────────────── */
+  .section:not(.section-legal, .section-copyright) {
+    background-color: #fff;
+    padding: 40px 0;
+
+    /* Column headings: authored as <p><strong>…</strong></p> */
+    p {
+      margin: 0 0 25px;
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.32px;
+      line-height: 1.3;
+      color: var(--mda-link);
+    }
+
+    p strong {
+      font-weight: 700;
+    }
+
+    ul {
+      margin: 0 0 32px;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      margin: 0 0 12px;
+    }
+
+    a {
+      font-size: 16px;
+      line-height: 1.3;
+    }
   }
 
-  .section-copyright p {
-    margin: 0;
+  /* ── 2. Utility / legal bar (light gray) ────────────────────────────────── */
+  .section-legal {
+    background-color: var(--mda-bar-gray);
+    padding: 30px 0 40px;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      margin: 6px 0;
+    }
+
+    a {
+      font-size: 12px;
+      color: var(--mda-link);
+    }
   }
 
-  .section {
-    .default-content {
-      max-width: initial;
-      margin: initial;
+  /* ── 3. Copyright / bottom bar (black) ──────────────────────────────────── */
+  .section-copyright {
+    background-color: var(--mda-bar-dark);
+    padding: 28px 0;
+    color: var(--mda-copyright);
+
+    p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.3;
+      color: var(--mda-copyright);
+    }
+
+    a {
+      color: var(--mda-copyright);
+    }
+
+    a:hover {
+      color: #fff;
     }
   }
 }
 
+/* ── Desktop layout (≥ 900px) ─────────────────────────────────────────────── */
 @media (width >= 900px) {
   footer {
-    margin: 0;
-
-    .section-legal {
-      display: flex;
-      justify-content: end;
-      gap: var(--spacing-xl);
-      margin-bottom: 24px;
-
-      ul {
-        display: flex;
-        justify-content: end;
-        gap: var(--spacing-xl);
-      }
-
-      li {
-        margin: 0;
-      }
+    /* Mega-footer: lay the heading/list pairs out as horizontal columns. */
+    .section:not(.section-legal, .section-copyright) .default-content {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0 48px;
+      align-items: start;
     }
 
-    .section-copyright {
+    .section:not(.section-legal, .section-copyright) ul {
+      margin-bottom: 24px;
+    }
+
+    /* Utility bar: single horizontal row with vertical-rule separators. */
+    .section-legal ul {
       display: flex;
-      justify-content: end;
-      gap: var(--spacing-xl);
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+    }
+
+    .section-legal li {
+      margin: 6px 0;
+      padding: 0 18px;
+      line-height: 1;
+      border-right: 1px solid rgb(0 0 0 / 40%);
+    }
+
+    .section-legal li:last-child {
+      border-right: 0;
+    }
+
+    /* Bottom bar: copyright right-aligned. */
+    .section-copyright .default-content {
+      display: flex;
+      justify-content: flex-end;
     }
   }
 }
