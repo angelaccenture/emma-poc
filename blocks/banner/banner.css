@@ -152,3 +152,46 @@
     white-space: nowrap;
   }
 }
+
+/* ── blue ────────────────────────────────────────────────────────────────
+   Full-bleed blue band (the "We're here for you" appointment strip). White
+   21px text, generous 40px/35px padding, underlined white links. Combine with
+   `center` for the centered appointment-bar treatment. Values from the live
+   site's .appointment-bar: bg rgb(51,97,173).
+   ──────────────────────────────────────────────────────────────────────── */
+.banner.blue {
+  --banner-bg: var(--color-mda-blue, #3361ad);
+  --banner-color: var(--color-light);
+
+  padding: 40px 35px;
+  font-size: 1.3125rem; /* 21px */
+  line-height: 1.4;
+}
+
+.banner.blue .banner-close {
+  display: none;
+}
+
+.banner.blue .banner-content a {
+  color: var(--banner-color);
+  font-weight: var(--font-weight-regular);
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+/* ── center ────────────────────────────────────────────────────────────────
+   Center-align the band's content. Independent of color — combine with any
+   color variant (e.g. `banner blue center`).
+   ──────────────────────────────────────────────────────────────────────── */
+.banner.center {
+  justify-content: center;
+  text-align: center;
+}
+
+.banner.center .banner-content {
+  justify-content: center;
+  text-align: center;
+}

@@ -110,6 +110,7 @@
   --color-mda-band-gray: #f2f3f4;     /* alternating section band background */
   --color-mda-purple: #783491;        /* promo tile purple */
   --color-mda-lightblue: #23b8f1;     /* section-icon light blue */
+  --color-mda-blue: #3361ad;          /* appointment-bar blue band */
   --color-mda-green: #478339;         /* section-icon green */
   --color-mda-promo-black: #000;      /* promo tile black */
   --color-link: var(--color-mda-red);
