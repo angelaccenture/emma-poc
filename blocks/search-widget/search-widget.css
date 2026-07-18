@@ -18,6 +18,35 @@
   color: var(--color-headings);
 }
 
+/* Section-heading icon — an 88px brand-colored circle with a white glyph,
+   sitting above the title. Matches the live site's fa-stack circle icons.
+   Color set by an author variant class (purple | lightblue | red | green);
+   defaults to MD Anderson red. Rendered as a pure pseudo-element (no extra
+   markup, no icon-font dependency): circle = background-color, glyph = a
+   white inline-SVG background image. */
+.search-widget {
+  --search-icon-color: var(--color-mda-red);
+}
+
+.search-widget.purple { --search-icon-color: var(--color-mda-purple); }
+.search-widget.lightblue { --search-icon-color: var(--color-mda-lightblue); }
+.search-widget.green { --search-icon-color: var(--color-mda-green); }
+
+.search-widget .search-widget-title::before {
+  content: "";
+  display: block;
+  width: 88px;
+  height: 88px;
+  margin-bottom: var(--spacing-s);
+  border-radius: 50%;
+  background-color: var(--search-icon-color);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 44px 44px;
+  /* white magnifier glyph */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+}
+
 .search-widget .search-widget-field {
   position: relative;
 }
