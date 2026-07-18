@@ -1,0 +1,97 @@
+/* media — MD Anderson full-bleed media feature.
+   Background image with a dark scrim; big white serif heading and a play link
+   overlaid bottom-left. Matches the live "Meet Heather Lillemoe" band. */
+.media {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 480px;
+  overflow: hidden;
+  color: var(--color-light);
+}
+
+.media .media-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.media .media-bg picture,
+.media .media-bg img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Dark scrim for legibility — stronger at the bottom where text sits. */
+.media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(0deg, rgb(0 0 0 / 70%) 0%, rgb(0 0 0 / 20%) 45%, rgb(0 0 0 / 10%) 100%);
+}
+
+.media .media-content {
+  position: relative;
+  z-index: 2;
+  width: var(--content-max-width);
+  max-width: 100%;
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--content-padding-inline);
+}
+
+.media .media-heading {
+  margin: 0;
+  max-width: 60%;
+  font-family: var(--font-family-heading);
+  font-size: clamp(2rem, 4vw, 3rem); /* up to 48px */
+  font-weight: var(--font-weight-regular);
+  line-height: 1.1;
+  color: var(--color-light);
+}
+
+/* Play link — white serif label with a circular play-triangle glyph. */
+.media .media-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: var(--spacing-m);
+  color: var(--color-light);
+  font-family: var(--font-family-heading);
+  font-size: 1.25rem;
+  text-decoration: none;
+
+  &::before {
+    content: "";
+    width: 44px;
+    height: 44px;
+    border: 2px solid var(--color-light);
+    border-radius: 50%;
+    background-color: transparent;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 7.5v9l7-4.5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 22px;
+    transition: background-color 0.15s ease;
+  }
+
+  &:hover {
+    text-decoration: underline;
+
+    &::before {
+      background-color: rgb(255 255 255 / 20%);
+    }
+  }
+}
+
+@media (width < 900px) {
+  .media {
+    min-height: 320px;
+  }
+
+  .media .media-heading {
+    max-width: 100%;
+  }
+}
