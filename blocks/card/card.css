@@ -97,6 +97,52 @@
     }
   }
 
+  /* Highlight variant — MD Anderson "Highlights" carousel card. Flat (no card
+     chrome): image on top, red serif title, gray serif caption. The whole card
+     is the link; the authored "Read the story" CTA is hidden. Values from the
+     live site: 24px serif title, 18px gray caption rgb(63,61,61). */
+  &.highlight {
+    border-radius: 0;
+    box-shadow: none;
+    background-color: transparent;
+
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .card-picture-container {
+      padding-bottom: 56.25%; /* 16:9 image */
+    }
+
+    .card-content-container {
+      padding: var(--spacing-s) 0 0;
+
+      h2,
+      h3,
+      h4 {
+        font-family: var(--font-family-heading);
+        font-size: 1.5rem; /* 24px */
+        font-weight: var(--font-weight-bold);
+        line-height: 1.2;
+        color: var(--color-mda-red);
+      }
+
+      p {
+        margin: 8px 0 0;
+        font-family: var(--font-family-heading);
+        font-size: 1.125rem; /* 18px */
+        line-height: 1.35;
+        color: #3f3d3d;
+      }
+    }
+
+    /* The whole card links; hide the authored inline CTA. */
+    .card-cta-container {
+      display: none;
+    }
+  }
+
   /* Icon variant — small app-style icon (e.g. Word/Excel) instead of a banner
      image. Icon sits top-left at its natural size, not stretched full-bleed. */
   &.icon {
