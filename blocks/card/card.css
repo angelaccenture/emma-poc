@@ -253,22 +253,26 @@
       box-shadow: none;
     }
 
-    .card-content-container {
+    /* Anchor on the inner content cell — the deployed card.js doesn't always
+       add .card-content-container. */
+    .card-inner > div {
       padding: var(--spacing-xl) var(--spacing-l);
 
       h2,
       h3,
       h4 {
+        margin-top: 0;
         color: var(--color-light);
       }
-    }
 
-    /* White CTA link on the colored tile */
-    .card-cta-container {
-      justify-content: center;
+      /* White CTA link on the colored tile, centered. */
+      p:last-child:has(a) {
+        margin-bottom: 0;
 
-      a {
-        color: var(--color-light);
+        a {
+          color: var(--color-light);
+          font-weight: var(--font-weight-semibold);
+        }
       }
     }
 
