@@ -345,15 +345,10 @@
     text-align: left;
   }
 
-  /* Caption/eyebrow above the heading (e.g. "Adela McCurley, Radiation Therapist") */
-  .hero-detail {
-    color: var(--color-light);
-    letter-spacing: -0.02em;
-    text-transform: none;
-    font-weight: var(--font-weight-regular);
-  }
-
+  /* Authored order: heading → name → role → CTA link (matches the live
+     carousel slide: Minion title, bold sans name/role, plain white link). */
   .hero-heading {
+    margin: 0;
     font-family: var(--font-family-heading);
     font-size: clamp(2.5rem, 5vw, 4.5rem); /* up to 72px */
     font-weight: var(--font-weight-regular);
@@ -362,10 +357,25 @@
     color: var(--color-light);
   }
 
-  /* The link below the heading is a plain white text link, not an MS button. */
+  /* Name / role caption — bold sans, tight stack under the title. */
+  .fg-text p:not(:has(a)) {
+    margin: 0;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
+    color: var(--color-light);
+  }
+
+  /* First caption line gets air below the title. */
+  .hero-heading + p {
+    margin-top: var(--spacing-s);
+  }
+
+  /* CTA — a plain white text link (no underline, no button chrome). */
   .fg-text p:has(a) {
     display: block;
-    margin-top: var(--spacing-m);
+    margin-top: var(--spacing-s);
 
     a {
       display: inline;
@@ -374,8 +384,12 @@
       background: none;
       color: var(--color-light);
       font-family: var(--font-family);
-      font-weight: var(--font-weight-bold);
-      text-decoration: underline;
+      font-weight: var(--font-weight-regular);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }
