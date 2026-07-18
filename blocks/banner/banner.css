@@ -1,0 +1,154 @@
+.banner {
+  --banner-bg: var(--color-primary, #0067b8);
+  --banner-color: var(--color-cta-text, #fff);
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: var(--spacing-m, 12px) 48px;
+  background-color: var(--banner-bg);
+  color: var(--banner-color);
+  text-align: center;
+  font-size: var(--body-font-size-m, 16px);
+  line-height: 1.3;
+}
+
+.banner[hidden] {
+  display: none;
+}
+
+.banner .banner-content {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.banner .banner-content p {
+  margin: 0;
+}
+
+.banner .banner-content a {
+  color: inherit;
+  font-weight: var(--font-weight-semibold, 600);
+  text-decoration: underline;
+}
+
+.banner .banner-close {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  color: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.banner .banner-close:hover {
+  background-color: rgb(255 255 255 / 20%);
+}
+
+.banner .banner-close .icon-close {
+  font-size: 22px;
+  line-height: 1;
+}
+
+/* ── MD Anderson announcement bands ──────────────────────────────────────
+   Full-bleed colored bars used on the landing template (World Cup / blood
+   drive, etc.). Left-aligned white heading + body, with a white outline
+   button on the right. Colors + metrics taken from the live site's
+   .horizontal-text-bar: purple rgb(120,52,145), red rgb(218,41,28),
+   30px/35px padding, square 1px white outline button.
+   Variant classes: `purple` | `red`.
+   ──────────────────────────────────────────────────────────────────────── */
+.banner.purple,
+.banner.red {
+  --banner-color: var(--color-light);
+
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--spacing-m);
+  padding: 30px 35px;
+  text-align: left;
+}
+
+.banner.purple { --banner-bg: var(--color-mda-purple, #783491); }
+.banner.red { --banner-bg: var(--color-mda-red, #da291c); }
+
+/* These are permanent content bands, not dismissible alerts. */
+.banner.purple .banner-close,
+.banner.red .banner-close {
+  display: none;
+}
+
+.banner.purple .banner-content,
+.banner.red .banner-content {
+  display: block;
+  text-align: left;
+}
+
+.banner.purple .banner-content h2,
+.banner.purple .banner-content h3,
+.banner.red .banner-content h2,
+.banner.red .banner-content h3 {
+  margin: 0 0 8px;
+  font-family: var(--font-family);
+  font-size: 1.125rem; /* 18px */
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  color: var(--banner-color);
+}
+
+.banner.purple .banner-content p,
+.banner.red .banner-content p {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* Outline button — transparent fill, 1px white border, square corners. */
+.banner.purple .banner-content a,
+.banner.red .banner-content a {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 12px 30px 10px;
+  border: 1px solid var(--banner-color);
+  background: transparent;
+  color: var(--banner-color);
+  font-weight: var(--font-weight-regular);
+  text-decoration: none;
+
+  &:hover {
+    background: var(--banner-color);
+    color: var(--banner-bg);
+  }
+}
+
+/* Desktop: keep text and button in one row like the live site. */
+@media (width >= 900px) {
+  .banner.purple,
+  .banner.red {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .banner.purple .banner-content a,
+  .banner.red .banner-content a {
+    white-space: nowrap;
+  }
+}
