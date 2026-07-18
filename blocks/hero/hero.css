@@ -4,8 +4,21 @@
   --default-min-height: 360px;
   --min-height: var(--default-min-height);
 
+  /* Button tokens — hero-scoped, falling back to global semantic tokens.
+     Child sites override either these hero vars or the global tokens. */
+  --hero-btn-primary-bg: var(--color-button-primary);
+  --hero-btn-primary-text: var(--color-cta-text);
+  --hero-btn-primary-bg-hover: var(--color-button-primary-hover);
+  --hero-btn-secondary-bg: transparent;
+  --hero-btn-secondary-text: var(--color-headings);
+  --hero-btn-secondary-border: var(--color-border);
+  --hero-btn-secondary-bg-hover: var(--color-gray-100);
+  --hero-btn-radius: var(--button-radius);
+  --hero-btn-padding: var(--button-padding);
+  --hero-btn-gap: var(--spacing-m);
+
   position: relative;
-  color: #fff;
+  color: var(--color-headings);
   overflow: hidden;
 
   &.small {
@@ -83,10 +96,7 @@
     min-height: var(--min-height);
     padding: var(--spacing-xxl) 0;
     box-sizing: border-box;
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    position: relative; 
     background: linear-gradient(90deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
 
     p {
@@ -106,17 +116,95 @@
       margin-bottom: 0;
     }
 
+    /* Eyebrow — uppercase, letter-spaced, muted (Azure-style) */
     .hero-detail {
       margin: 0;
+      font-size: var(--body-font-size-s);
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-muted);
     }
 
     .hero-heading {
       margin: 0;
+      font-weight: var(--font-weight-medium);
+      line-height: 56px;
+      letter-spacing: -0.02em;
+    }
+
+    .fg-text p {
+      max-width: 34rem;
+    }
+
+    /* CTA row — the paragraph holding the hero links.
+       Authored as: <p><strong><a>Primary</a></strong><br><a>Secondary</a></p> */
+    .fg-text p:has(a) {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--hero-btn-gap);
+      align-items: center;
+      margin-top: var(--spacing-l);
+
+      /* neutralize the authored line break so CTAs sit side by side */
+      br {
+        display: none;
+      }
+
+      a {
+        display: inline-block;
+        padding: var(--hero-btn-padding);
+        border-radius: var(--hero-btn-radius);
+        font-size: var(--button-font-size, var(--body-font-size-s));
+        font-weight: var(--font-weight-semibold);
+        line-height: 1;
+        text-align: center;
+        text-decoration: none;
+        border: 1px solid transparent;
+        transition: background-color var(--transition-base), color var(--transition-base);
+      }
+
+      /* Secondary (bare link) */
+      > a {
+        background: var(--hero-btn-secondary-bg);
+        color: var(--hero-btn-secondary-text);
+        border-color: var(--hero-btn-secondary-border);
+
+        &:hover {
+          background: var(--hero-btn-secondary-bg-hover);
+        }
+      }
+
+      /* Primary (link wrapped in <strong>) */
+      strong {
+        font-weight: inherit;
+
+        a {
+          background: var(--hero-btn-primary-bg);
+          color: var(--hero-btn-primary-text);
+          border-color: var(--hero-btn-primary-bg);
+
+          &:hover {
+            background: var(--hero-btn-primary-bg-hover);
+            border-color: var(--hero-btn-primary-bg-hover);
+          }
+        }
+      }
     }
   }
 
   &.stack {
     .hero-background {
+      position: relative;
+      aspect-ratio: var(--hero-image-ratio, 16 / 5);
+
+      picture,
+      img {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+      }
+
       > div {
         min-height: var(--default-min-height);
         position: relative;
@@ -124,12 +212,12 @@
     }
 
     .hero-foreground {
-      background: #111;
+      background: var(--color-gray-900);
     }
 
     &.light {
       .hero-foreground {
-        background: #f9f9f9;
+        background: var(--color-shaded);
       }
     }
 
@@ -152,30 +240,15 @@
       text-align: center;
     }
   }
-
-  /* Compact variant — shorter hero for interior / landing pages. */
-  &.compact {
-    --min-height: 240px;
-  }
-
-  /* Text-only variant — no background image; brand band with inverse text,
-     for section-intro heroes. */
-  &.text-only {
-    background-color: var(--color-brand);
-    color: var(--color-light);
-
-    .hero-foreground {
-      background: none;
-      min-height: 0;
-    }
-  }
 }
 
 @media (width >= 600px) {
   .hero {
     .hero-foreground {
       display: grid;
-      grid-template-columns: 45% 45%;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-xxl);
+      align-items: center;
       justify-content: space-between;
       max-width: var(--grid-container-width);
       margin: 0 auto;
@@ -238,5 +311,81 @@
     .hero-foreground {
       grid-template-columns: 33% 33%;
     }
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   MD Anderson hero — full-bleed 450px background image with white, left-
+   aligned serif text overlaid (matches mdanderson.org's hero carousel slide).
+   Scoped to the landing template so it doesn't affect the generic hero
+   defaults used elsewhere. Values extracted from the live site:
+     height 450px · h1 Minion 72px/72px wt400 white letter-spacing -1.44px.
+   ───────────────────────────────────────────────────────────────────────── */
+.landing-template .hero {
+  --min-height: 450px;
+
+  color: var(--color-light);
+
+  .hero-foreground {
+    /* Text overlays the image, left-aligned, vertically centered. A subtle
+       left-to-right dark scrim keeps the white text legible over the photo. */
+    display: flex;
+    align-items: center;
+    grid-template-columns: none;
+    background: linear-gradient(90deg, rgb(0 0 0 / 55%) 0%, rgb(0 0 0 / 15%) 60%, rgb(0 0 0 / 0%) 100%);
+    padding-block: 0;
+  }
+
+  .fg-text {
+    width: var(--content-max-width);
+    max-width: 100%;
+    margin: 0 auto;
+    padding-inline: var(--content-padding-inline);
+    color: var(--color-light);
+    text-align: left;
+  }
+
+  /* Caption/eyebrow above the heading (e.g. "Adela McCurley, Radiation Therapist") */
+  .hero-detail {
+    color: var(--color-light);
+    letter-spacing: -0.02em;
+    text-transform: none;
+    font-weight: var(--font-weight-regular);
+  }
+
+  .hero-heading {
+    font-family: var(--font-family-heading);
+    font-size: clamp(2.5rem, 5vw, 4.5rem); /* up to 72px */
+    font-weight: var(--font-weight-regular);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--color-light);
+  }
+
+  /* The link below the heading is a plain white text link, not an MS button. */
+  .fg-text p:has(a) {
+    display: block;
+    margin-top: var(--spacing-m);
+
+    a {
+      display: inline;
+      padding: 0;
+      border: 0;
+      background: none;
+      color: var(--color-light);
+      font-family: var(--font-family);
+      font-weight: var(--font-weight-bold);
+      text-decoration: underline;
+    }
+  }
+}
+
+@media (width < 900px) {
+  .landing-template .hero {
+    --min-height: 320px;
+  }
+
+  .landing-template .hero .hero-heading {
+    font-size: 2.25rem;
   }
 }
