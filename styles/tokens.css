@@ -1,5 +1,7 @@
 :root {
-  /* grid */
+  /* grid — MD Anderson: content caps at 1440px with 72px side padding */
+  --content-max-width: 1440px;
+  --content-padding-inline: 72px;
   --grid-container-width: 83.4%;
   --grid-column-width: calc(var(--grid-container-width) / 12);
   --grid-gutter-width: 8.3%;
