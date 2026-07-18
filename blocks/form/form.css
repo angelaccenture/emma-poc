@@ -1,42 +1,72 @@
-/* form (PLACEHOLDER) — newsletter signup stub, token-driven. */
+/* form — MD Anderson newsletter signup (heading + inline fields + submit).
+   Values from live computed styles: 40px white inputs with a 1px dark border
+   (#414042), a submit button. Inputs sit in a row on desktop, stack on mobile. */
 .form {
-  padding: var(--spacing-xl) var(--spacing-l);
-  background-color: var(--color-shaded);
+  --form-input-border: #414042;   /* rgb(65,64,66) */
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-m);
 }
 
-.form .form-intro {
-  margin: 0 0 var(--spacing-m);
-  font-family: var(--subhead-font-family);
-  font-size: var(--body-font-size-l);
+.form .form-heading {
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-regular);
   color: var(--color-headings);
 }
 
 .form .form-fields {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: var(--spacing-s);
 }
 
 .form .form-fields input {
-  flex: 1 1 200px;
-  padding: var(--spacing-s) var(--spacing-m);
-  font: inherit;
-  border: 1px solid var(--color-border);
-  border-radius: var(--button-radius);
-  background-color: var(--color-background);
+  height: 40px;
+  padding: 4px 12px;
+  border: 1px solid var(--form-input-border);
+  border-radius: 0;
+  background-color: var(--color-light);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  font-size: 1rem; /* 16px */
+
+  &:focus-visible {
+    outline: 2px solid var(--color-focus, var(--color-mda-red));
+    outline-offset: 1px;
+  }
 }
 
+/* Submit — MD Anderson red button, white bold uppercase label. */
 .form .form-submit {
-  padding: var(--button-padding);
+  height: 40px;
+  padding: 0 24px;
   border: 0;
-  border-radius: var(--button-radius);
-  background-color: var(--button-primary-bg);
-  color: var(--button-primary-text);
-  font-family: var(--button-font-family);
-  font-weight: var(--button-font-weight);
+  border-radius: 0;
+  background-color: var(--color-mda-red);
+  color: var(--color-light);
+  font-family: var(--font-family);
+  font-size: 1rem;
+  font-weight: var(--font-weight-bold);
   cursor: pointer;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    background-color: var(--color-primary-hover, #b3211d);
+  }
 }
 
-.form .form-submit:hover {
-  background-color: var(--button-primary-bg-hover);
+/* Desktop: fields + button in one inline row. */
+@media (width >= 900px) {
+  .form .form-fields {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .form .form-fields input {
+    flex: 1;
+  }
 }

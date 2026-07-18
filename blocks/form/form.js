@@ -1,47 +1,49 @@
 /**
- * form (PLACEHOLDER)
- *
- * POC stub for the newsletter signup ("Subscribe to our Cancerwise newsletter").
- * Renders the intro text + first/last/email fields + submit button. Non-functional.
- *
- * Authored structure (one row):
- *   | Form                                   |
- *   | Subscribe to our Cancerwise newsletter |
- *   | Get started                            |  (button label)
- *
- * TODO (post-POC): wire submission to the real marketing endpoint, or replace
- * with EDS Forms for full field config/validation.
- *
- * @param {Element} block
+ * form — MD Anderson newsletter signup (visual match, POC).
+ * Authored rows: [0] heading, [1] submit button label.
+ * Renders: heading + a <form> with First/Last/Email inputs and a submit button.
+ * The fields mirror the source newsletter form; not wired to a backend (POC).
  */
-export default function init(block) {
-  const rows = [...block.querySelectorAll(':scope > div')];
-  const intro = rows[0]?.textContent.trim() || 'Sign up for our newsletter';
-  const submitLabel = rows[1]?.textContent.trim() || 'Get started';
+export default function init(el) {
+  const rows = [...el.querySelectorAll(':scope > div')];
+  const headingText = rows[0]?.textContent.trim() || '';
+  const buttonText = rows[1]?.textContent.trim() || 'Submit';
 
-  block.textContent = '';
+  el.textContent = '';
 
-  const label = document.createElement('p');
-  label.className = 'form-intro';
-  label.textContent = intro;
+  if (headingText) {
+    const heading = document.createElement('p');
+    heading.className = 'form-heading';
+    heading.textContent = headingText;
+    el.append(heading);
+  }
 
   const form = document.createElement('form');
   form.className = 'form-fields';
-  form.addEventListener('submit', (e) => e.preventDefault()); // PLACEHOLDER
+  form.setAttribute('novalidate', '');
 
-  ['First Name', 'Last Name', 'Email Address'].forEach((ph, i) => {
+  const fields = [
+    { name: 'first-name', placeholder: 'First Name *', type: 'text' },
+    { name: 'last-name', placeholder: 'Last Name *', type: 'text' },
+    { name: 'email', placeholder: 'Email Address *', type: 'email' },
+  ];
+  for (const f of fields) {
     const input = document.createElement('input');
-    input.type = i === 2 ? 'email' : 'text';
-    input.placeholder = `${ph} *`;
-    input.setAttribute('aria-label', ph);
+    input.type = f.type;
+    input.name = f.name;
+    input.setAttribute('placeholder', f.placeholder);
+    input.setAttribute('aria-label', f.placeholder.replace(' *', ''));
     form.append(input);
-  });
+  }
 
   const submit = document.createElement('button');
   submit.type = 'submit';
   submit.className = 'form-submit';
-  submit.textContent = submitLabel;
+  submit.textContent = buttonText;
   form.append(submit);
 
-  block.append(label, form);
+  // POC: no backend — prevent navigation on submit.
+  form.addEventListener('submit', (e) => e.preventDefault());
+
+  el.append(form);
 }

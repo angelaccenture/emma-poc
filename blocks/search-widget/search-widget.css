@@ -1,39 +1,79 @@
-/* search-widget (PLACEHOLDER) — styled static stub, token-driven. */
+/* search-widget — MD Anderson search panel (heading + search field + browse link).
+   Values from live computed styles: 36px serif heading, 70px gray input field
+   (#d0d0ce) with left padding for the search icon, red browse link. */
 .search-widget {
-  padding: var(--spacing-l);
-  background-color: var(--color-shaded);
-  border-radius: var(--card-border-radius);
+  --search-input-bg: #d0d0ce;      /* rgb(208,208,206) */
+  --search-input-text: #605d5d;    /* rgb(96,93,93) */
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-m);
 }
 
 .search-widget .search-widget-title {
-  margin: 0 0 var(--spacing-m);
-  font-family: var(--subhead-font-family);
-  font-size: var(--heading-font-size-m);
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-size: 1.75rem; /* ~28px mobile; up to 36px desktop below */
+  font-weight: var(--font-weight-regular);
   color: var(--color-headings);
 }
 
 .search-widget .search-widget-field {
-  display: flex;
+  position: relative;
 }
 
-.search-widget .search-widget-field input {
-  flex: 1;
-  padding: var(--spacing-s) var(--spacing-m);
-  font: inherit;
-  border: 1px solid var(--color-border);
-  border-radius: var(--button-radius);
-  background-color: var(--color-background);
+/* Magnifying-glass accent via pseudo-element — no extra markup. */
+.search-widget .search-widget-field::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  transform: translateY(-50%) rotate(-45deg);
+  border: 2px solid var(--search-input-text);
+  border-radius: 50%;
+  box-shadow: 0 10px 0 -7px var(--search-input-text); /* the handle */
+  pointer-events: none;
 }
 
-.search-widget .search-widget-browse {
-  display: inline-block;
-  margin-top: var(--spacing-m);
+.search-widget .search-widget-input {
+  width: 100%;
+  height: 56px;
+  padding: 1px 12px 1px 38px;
+  border: 0;
+  border-radius: 0;
+  background-color: var(--search-input-bg);
+  color: var(--search-input-text);
+  font-family: var(--font-family);
+  font-size: 1.125rem; /* 18px */
+
+  &::placeholder {
+    color: var(--search-input-text);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-focus, var(--color-mda-red));
+    outline-offset: 2px;
+  }
+}
+
+.search-widget .search-widget-link a {
   color: var(--color-link);
-  font-family: var(--subhead-font-family);
   font-weight: var(--font-weight-bold);
   text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
-.search-widget .search-widget-browse:hover {
-  text-decoration: underline;
+@media (width >= 900px) {
+  .search-widget .search-widget-title {
+    font-size: 2.25rem; /* 36px */
+  }
+
+  .search-widget .search-widget-input {
+    height: 70px;
+  }
 }

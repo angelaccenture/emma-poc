@@ -1,45 +1,39 @@
 /**
- * search-widget (PLACEHOLDER)
- *
- * POC stub for the MD Anderson typeahead search widgets ("Search Cancer Types",
- * "Search Clinical Trials"). Renders a styled heading + input + "Browse" link.
- *
- * Authored structure (one row):
- *   | Search Widget (cancer-types) |
- *   | Heading text                 |
- *   | Placeholder text             |
- *   | [Browse link](url)           |
- *
- * TODO (post-POC): wire the input to the real search endpoint for live typeahead
- * results. Variant class (cancer-types | clinical-trials) selects the endpoint.
- *
- * @param {Element} block
+ * search-widget — MD Anderson search panel.
+ * Authored rows: [0] title, [1] placeholder text, [2] browse link.
+ * Renders: heading + a (visual, non-functional) search input using the
+ * placeholder text, then the browse link below. POC = visual match; the input
+ * is decorative (no backend wired).
  */
-export default function init(block) {
-  const rows = [...block.querySelectorAll(':scope > div')];
-  const heading = rows[0]?.textContent.trim() || 'Search';
-  const placeholder = rows[1]?.textContent.trim() || 'Search…';
-  const browseLink = block.querySelector('a');
+export default function init(el) {
+  const rows = [...el.querySelectorAll(':scope > div')];
+  const [titleRow, placeholderRow, linkRow] = rows;
 
-  block.textContent = '';
+  // Heading
+  if (titleRow) {
+    const titleText = titleRow.textContent.trim();
+    const heading = document.createElement('h3');
+    heading.className = 'search-widget-title';
+    heading.textContent = titleText;
+    titleRow.replaceWith(heading);
+  }
 
-  const title = document.createElement('h3');
-  title.className = 'search-widget-title';
-  title.textContent = heading;
+  // Search input (placeholder from the second row)
+  if (placeholderRow) {
+    const placeholder = placeholderRow.textContent.trim();
+    const field = document.createElement('div');
+    field.className = 'search-widget-field';
+    const input = document.createElement('input');
+    input.type = 'search';
+    input.className = 'search-widget-input';
+    input.setAttribute('placeholder', placeholder);
+    input.setAttribute('aria-label', placeholder);
+    field.append(input);
+    placeholderRow.replaceWith(field);
+  }
 
-  const field = document.createElement('div');
-  field.className = 'search-widget-field';
-  const input = document.createElement('input');
-  input.type = 'search';
-  input.placeholder = placeholder;
-  input.setAttribute('aria-label', heading);
-  input.disabled = true; // PLACEHOLDER: no backend wired yet
-  field.append(input);
-
-  block.append(title, field);
-
-  if (browseLink) {
-    browseLink.classList.add('search-widget-browse');
-    block.append(browseLink);
+  // Browse link
+  if (linkRow) {
+    linkRow.classList.add('search-widget-link');
   }
 }
