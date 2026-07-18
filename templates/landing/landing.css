@@ -5,17 +5,20 @@
    Training). Applied when a page sets `Template: landing` in metadata; ak.js
    adds the `landing-template` class to <body>.
 
-   Provides the shared vertical rhythm and the automatic alternating gray/white
-   band backgrounds seen down every landing page — authors don't set a per-
-   section Style; the template stripes them automatically.
+   Provides the automatic alternating gray/white band backgrounds seen down
+   every landing page — authors don't set a per-section Style; the template
+   stripes them automatically. Per-section vertical spacing is set via the
+   section-metadata Spacing property, not the template.
 
    A section can opt OUT of the auto-band (e.g. a full-bleed hero or a
    deliberately colored promo band) by adding Style: no-band.
    ───────────────────────────────────────────────────────────────────────── */
 
-.landing-template main > .section {
-  /* Shared landing rhythm: 70px vertical padding on every content band. */
-  padding-block: 70px;
+/* Automatic zebra striping: even content sections get the gray band that
+   fills the full viewport width while inner content stays in the 1440px
+   column. Odd sections stay on the default (white) background. */
+.landing-template main > .section:nth-child(even) {
+  background-color: var(--color-mda-band-gray);
 }
 
 /* Full-bleed hero opts out of the band rhythm — no vertical padding, no
@@ -30,10 +33,4 @@
 .landing-template main > .section.no-band {
   padding-block: 0;
   background-color: transparent;
-}
-
-@media (width < 900px) {
-  .landing-template main > .section {
-    padding-block: 40px;
-  }
 }
