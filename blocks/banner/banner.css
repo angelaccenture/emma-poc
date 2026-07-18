@@ -1,43 +1,157 @@
+/* Banner — MD Anderson announcement / appointment bands.
+   The colored background is owned by the SECTION (section-metadata Background);
+   the banner is transparent and only lays out white content. */
 .banner {
-  --banner-bg: var(--color-primary, #0067b8);
-  --banner-color: var(--color-cta-text, #fff);
+  --banner-color: var(--color-light);
 
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  padding: var(--spacing-m, 12px) 48px;
-  background-color: var(--banner-bg);
   color: var(--banner-color);
-  text-align: center;
-  font-size: var(--body-font-size-m, 16px);
-  line-height: 1.3;
+  font-size: 1rem;
+  line-height: 1.4;
 }
 
 .banner[hidden] {
   display: none;
 }
 
-.banner .banner-content {
-  display: inline-flex;
+.banner a {
+  color: inherit;
+}
+
+/* ── Announcement grid — icon | text | button ────────────────────────────
+   Full-bleed colored band (color from the section). Icon left, heading +
+   body in the middle, outline button on the right. Stacks on mobile.
+   Metrics from the live .horizontal-text-bar: 30px/35px padding, 18px bold
+   white heading, square 1px white outline button.
+   ──────────────────────────────────────────────────────────────────────── */
+.banner:not(.center) {
+  display: grid;
+  grid-template-areas: "content" "cta";
+  gap: var(--spacing-m);
   align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
+  padding: 30px 35px;
+  text-align: left;
+}
+
+/* Icon present → add an icon column/row. */
+.banner:not(.center):has(.banner-icon) {
+  grid-template-areas: "icon content" "icon cta";
+  grid-template-columns: auto 1fr;
+  column-gap: 24px;
+}
+
+.banner .banner-icon {
+  grid-area: icon;
+  align-self: start;
+  width: 64px;
+  height: 64px;
+  background-color: var(--banner-color);
+  mask: var(--banner-glyph, none) center / contain no-repeat;
+}
+
+.banner .banner-content {
+  grid-area: content;
   margin: 0;
+}
+
+.banner .banner-content h2,
+.banner .banner-content h3 {
+  margin: 0 0 8px;
+  font-family: var(--font-family);
+  font-size: 1.125rem; /* 18px */
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  color: var(--banner-color);
 }
 
 .banner .banner-content p {
   margin: 0;
+  font-size: 1rem;
+  line-height: 1.4;
 }
 
-.banner .banner-content a {
-  color: inherit;
-  font-weight: var(--font-weight-semibold, 600);
+/* Outline button — transparent fill, 1px white border, square corners. */
+.banner .banner-cta {
+  grid-area: cta;
+  margin: 0;
+}
+
+.banner .banner-cta a {
+  display: inline-block;
+  padding: 12px 30px 10px;
+  border: 1px solid var(--banner-color);
+  background: transparent;
+  color: var(--banner-color);
+  font-weight: var(--font-weight-regular);
+  text-decoration: none;
+
+  &:hover {
+    background: var(--banner-color);
+    color: var(--color-dark);
+  }
+}
+
+/* Desktop: text and button share one row, button hugs the right edge. */
+@media (width >= 900px) {
+  .banner:not(.center) {
+    grid-template-areas: "content cta";
+    grid-template-columns: 1fr auto;
+    column-gap: 32px;
+  }
+
+  .banner:not(.center):has(.banner-icon) {
+    grid-template-areas: "icon content cta";
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .banner .banner-cta a {
+    white-space: nowrap;
+  }
+}
+
+/* ── Glyph variants ──────────────────────────────────────────────────────
+   White inline-SVG icons (no icon-font dependency). Author sets the glyph
+   variant alongside the block, e.g. `banner glyph-location`.
+   ──────────────────────────────────────────────────────────────────────── */
+.banner.glyph-location {
+  --banner-glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E");
+}
+
+.banner.glyph-drop {
+  --banner-glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2.5S5 10 5 14.5a7 7 0 0 0 14 0C19 10 12 2.5 12 2.5z'/%3E%3C/svg%3E");
+}
+
+/* ── center ──────────────────────────────────────────────────────────────
+   Single centered line (the "We're here for you" appointment bar). White
+   21px text, generous padding, underlined inline links. Color from section.
+   ──────────────────────────────────────────────────────────────────────── */
+.banner.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 35px;
+  font-size: 1.3125rem; /* 21px */
+  text-align: center;
+}
+
+.banner.center .banner-content {
+  margin: 0;
+}
+
+.banner.center .banner-content :is(h2, h3, p) {
+  margin: 0;
+  font-weight: var(--font-weight-regular);
+}
+
+.banner.center a {
   text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
+/* ── close (dismissible only) ────────────────────────────────────────────── */
 .banner .banner-close {
   position: absolute;
   right: 12px;
@@ -64,134 +178,4 @@
 .banner .banner-close .icon-close {
   font-size: 22px;
   line-height: 1;
-}
-
-/* ── MD Anderson announcement bands ──────────────────────────────────────
-   Full-bleed colored bars used on the landing template (World Cup / blood
-   drive, etc.). Left-aligned white heading + body, with a white outline
-   button on the right. Colors + metrics taken from the live site's
-   .horizontal-text-bar: purple rgb(120,52,145), red rgb(218,41,28),
-   30px/35px padding, square 1px white outline button.
-   Variant classes: `purple` | `red`.
-   ──────────────────────────────────────────────────────────────────────── */
-.banner.purple,
-.banner.red {
-  --banner-color: var(--color-light);
-
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: var(--spacing-m);
-  padding: 30px 35px;
-  text-align: left;
-}
-
-.banner.purple { --banner-bg: var(--color-mda-purple, #783491); }
-.banner.red { --banner-bg: var(--color-mda-red, #da291c); }
-
-/* These are permanent content bands, not dismissible alerts. */
-.banner.purple .banner-close,
-.banner.red .banner-close {
-  display: none;
-}
-
-.banner.purple .banner-content,
-.banner.red .banner-content {
-  display: block;
-  text-align: left;
-}
-
-.banner.purple .banner-content h2,
-.banner.purple .banner-content h3,
-.banner.red .banner-content h2,
-.banner.red .banner-content h3 {
-  margin: 0 0 8px;
-  font-family: var(--font-family);
-  font-size: 1.125rem; /* 18px */
-  font-weight: var(--font-weight-bold);
-  line-height: 1.2;
-  color: var(--banner-color);
-}
-
-.banner.purple .banner-content p,
-.banner.red .banner-content p {
-  font-size: 1rem;
-  line-height: 1.4;
-}
-
-/* Outline button — transparent fill, 1px white border, square corners. */
-.banner.purple .banner-content a,
-.banner.red .banner-content a {
-  display: inline-block;
-  margin-top: 4px;
-  padding: 12px 30px 10px;
-  border: 1px solid var(--banner-color);
-  background: transparent;
-  color: var(--banner-color);
-  font-weight: var(--font-weight-regular);
-  text-decoration: none;
-
-  &:hover {
-    background: var(--banner-color);
-    color: var(--banner-bg);
-  }
-}
-
-/* Desktop: keep text and button in one row like the live site. */
-@media (width >= 900px) {
-  .banner.purple,
-  .banner.red {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 32px;
-  }
-
-  .banner.purple .banner-content a,
-  .banner.red .banner-content a {
-    white-space: nowrap;
-  }
-}
-
-/* ── blue ────────────────────────────────────────────────────────────────
-   Full-bleed blue band (the "We're here for you" appointment strip). White
-   21px text, generous 40px/35px padding, underlined white links. Combine with
-   `center` for the centered appointment-bar treatment. Values from the live
-   site's .appointment-bar: bg rgb(51,97,173).
-   ──────────────────────────────────────────────────────────────────────── */
-.banner.blue {
-  --banner-bg: var(--color-mda-blue, #3361ad);
-  --banner-color: var(--color-light);
-
-  padding: 40px 35px;
-  font-size: 1.3125rem; /* 21px */
-  line-height: 1.4;
-}
-
-.banner.blue .banner-close {
-  display: none;
-}
-
-.banner.blue .banner-content a {
-  color: var(--banner-color);
-  font-weight: var(--font-weight-regular);
-  text-decoration: underline;
-
-  &:hover {
-    text-decoration: none;
-  }
-}
-
-/* ── center ────────────────────────────────────────────────────────────────
-   Center-align the band's content. Independent of color — combine with any
-   color variant (e.g. `banner blue center`).
-   ──────────────────────────────────────────────────────────────────────── */
-.banner.center {
-  justify-content: center;
-  text-align: center;
-}
-
-.banner.center .banner-content {
-  justify-content: center;
-  text-align: center;
 }
