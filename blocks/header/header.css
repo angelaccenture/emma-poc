@@ -418,6 +418,7 @@ header .brand-section .default-content ul li + li {
   header .actions-section {
     grid-area: actions;
     position: relative;
+    max-height: none;
     overflow: initial;
     background-color: #fff;
 
