@@ -1,4 +1,4 @@
-import { getConfig, getMetadata } from '../../scripts/ak.js';
+import { getConfig } from '../../scripts/ak.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { setColorScheme } from '../section-metadata/section-metadata.js';
 
@@ -10,6 +10,14 @@ const HEADER_ACTIONS = [
   '/tools/widgets/language',
   '/tools/widgets/toggle',
 ];
+
+function getNavPath(defaultPath) {
+  // Derive the site-scoped fragment path from the current page's top-level
+  // segment (e.g. /siteone/** -> /siteone/fragments/nav/header) so multiple
+  // sites in one repo each load their own chrome. Falls back to the repo root.
+  const [site] = window.location.pathname.split('/').filter(Boolean);
+  return site ? `/${site}${defaultPath}` : defaultPath;
+}
 
 function closeAllMenus() {
   const openMenus = document.body.querySelectorAll('header .is-open');
@@ -43,7 +51,7 @@ function decorateLanguage(btn) {
     if (!menu) {
       const content = document.createElement('div');
       content.classList.add('block-content');
-      const fragment = await loadFragment(`${locale.prefix}${HEADER_PATH}/languages`);
+      const fragment = await loadFragment(`${locale.prefix}${getNavPath(HEADER_PATH)}/languages`);
       menu = document.createElement('div');
       menu.className = 'language menu';
       menu.append(fragment);
@@ -184,8 +192,7 @@ async function decorateHeader(fragment) {
  * @param {Element} el The header element
  */
 export default async function init(el) {
-  const headerMeta = getMetadata('header');
-  const path = headerMeta || HEADER_PATH;
+  const path = getNavPath(HEADER_PATH);
   try {
     const fragment = await loadFragment(`${locale.prefix}${path}`);
     fragment.classList.add('header-content');
