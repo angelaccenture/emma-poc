@@ -242,6 +242,32 @@ main .section {
   }
 }
 
+/* ── MD Anderson landing-page section bands ──────────────────────────────────
+   Shared template rhythm: content sections use 70px vertical padding, and a
+   gray band variant provides the alternating background stripe seen across all
+   the landing pages. Apply via section metadata (the Style value becomes the
+   section class):
+     Style: band          → 70px vertical rhythm
+     Style: band-gray     → 70px rhythm + #f2f3f4 background (full-bleed stripe)
+   ──────────────────────────────────────────────────────────────────────────── */
+main .section.band,
+main .section.band-gray {
+  padding-block: 70px;
+}
+
+/* Gray band background — the stripe fills full viewport width while the
+   content inside stays in the 1440px column. */
+main .section.band-gray {
+  background-color: var(--color-mda-band-gray);
+}
+
+@media (width < 900px) {
+  main .section.band,
+  main .section.band-gray {
+    padding-block: 40px;
+  }
+}
+
 main {
   ul,
   ol {
