@@ -179,9 +179,12 @@
       grid-column: 1;
     }
 
+    /* The right-column panel spans the stacked left items. `span 2` matches
+       the two stacked blocks; using a large span created phantom rows whose
+       row-gaps piled up as empty space. */
     &.split-rule .block-content > :last-child {
       grid-column: 2;
-      grid-row: 1 / span 99;
+      grid-row: 1 / span 2;
     }
 
     &.split-rule .block-content::before {
