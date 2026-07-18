@@ -78,20 +78,72 @@
     }
   }
 
-  /* Stat variant — a large stat/figure column beside supporting copy
-     (e.g. "36 Years / #1 Best Hospitals" next to intro text). The first
-     column reads as the emphasized figure. */
+  /* ── stat variant — MD Anderson "Why Choose" ────────────────────────────
+     Left column is a dark card with a red shield stat (number + label) and a
+     white title/caption; right column is the heading + copy + red link.
+     Authored col-1 paragraphs: [0] number, [1] unit, [2] title — U.S. News.
+     ──────────────────────────────────────────────────────────────────────── */
   &.stat {
-    --columns-gap: var(--spacing-xl);
+    --columns-gap: var(--spacing-xxl);
 
     .col-1 {
-      color: var(--color-brand);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-xxl) var(--spacing-l);
+      background-color: #3a3537; /* MD Anderson dark card */
+      color: var(--color-light);
       text-align: center;
 
-      :first-child {
-        font-family: var(--heading-font-family);
-        font-size: var(--heading-font-size-xxl);
+      /* number → white text on a red shield (pentagon clip). "Years" is the
+         next paragraph, tucked into the lower point of the shield. */
+      p:first-child {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 150px;
+        height: 175px;
+        padding-bottom: 30px; /* keeps the number above the shield's point */
+        margin: 0;
+        background-color: var(--color-mda-red);
+        clip-path: polygon(0 0, 100% 0, 100% 72%, 50% 100%, 0 72%);
+        box-sizing: border-box;
+        font-family: var(--font-family-heading);
+        font-size: 3.5rem; /* 56px */
         line-height: 1;
+        color: var(--color-light);
+      }
+
+      p:nth-child(2) {
+        margin: -3rem 0 0; /* sit in the shield's lower point, under the number */
+        font-size: 1rem;
+        color: var(--color-light);
+      }
+
+      /* title line ("Best Hospitals … — U.S. News & World Report") */
+      p:nth-child(3) {
+        max-width: 22ch;
+        margin: var(--spacing-l) 0 0;
+        font-family: var(--font-family-heading);
+        font-size: 1.75rem;
+        line-height: 1.2;
+        color: var(--color-light);
+      }
+    }
+
+    .col-2 {
+      h2,
+      h3 {
+        margin-top: 0;
+        font-family: var(--font-family-heading);
+        font-weight: var(--font-weight-regular);
+        color: var(--color-headings);
+      }
+
+      a {
+        color: var(--color-link);
+        font-weight: var(--font-weight-bold);
       }
     }
   }
