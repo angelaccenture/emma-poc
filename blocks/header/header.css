@@ -56,13 +56,50 @@ header {
 
     display: grid;
     grid-template-areas:
+      "cta"
       "brand"
       "nav"
       "actions";
-    grid-template-rows: var(--header-height) auto 1fr;
+    grid-template-rows: auto var(--header-height) auto 1fr;
     font-family: var(--mda-body-font);
     background-color: #fff;
     border-bottom: 3px solid var(--mda-red);
+  }
+
+  /* ── Top CTA strip: black bar, right-aligned red links ────────────────── */
+  .cta-section {
+    grid-area: cta;
+    background-color: var(--mda-black);
+
+    .default-content {
+      max-width: none;
+      margin: 0;
+      min-height: 40px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    ul {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    a {
+      display: block;
+      padding: 10px 20px;
+      color: var(--mda-red-link);
+      font-family: var(--mda-nav-font);
+      font-size: 16px;
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        color: #fff;
+      }
+    }
   }
 
   .action-wrapper {
@@ -314,17 +351,22 @@ header .brand-section .default-content ul li + li {
   }
 
   header .header-content {
-    /* Two stacked full-width bands: brand row, then red nav bar. */
-    --header-height: calc(var(--brand-row-height) + var(--nav-bar-height));
+    /* Three stacked bands: CTA strip, brand row, then red nav bar. */
+    --header-height: calc(40px + var(--brand-row-height) + var(--nav-bar-height));
 
     display: grid;
     grid-template:
+      "cta cta" 40px
       "brand actions" var(--brand-row-height)
       "nav nav" var(--nav-bar-height)
       / 1fr auto;
     max-width: none;
     margin: 0;
     gap: 0;
+  }
+
+  header .cta-section .default-content {
+    padding: 0 40px;
   }
 
   header .brand-section {

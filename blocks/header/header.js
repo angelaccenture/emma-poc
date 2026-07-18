@@ -168,11 +168,16 @@ async function decorateActionSection(section) {
   section.classList.add('actions-section');
 }
 
+function decorateCtaSection(section) {
+  section.classList.add('cta-section');
+}
+
 async function decorateHeader(fragment) {
   const sections = fragment.querySelectorAll(':scope > .section');
   if (sections[0]) decorateBrandSection(sections[0]);
   if (sections[1]) decorateNavSection(sections[1]);
   if (sections[2]) decorateActionSection(sections[2]);
+  if (sections[3]) decorateCtaSection(sections[3]);
 
   for (const pattern of HEADER_ACTIONS) {
     decorateAction(fragment, pattern);
