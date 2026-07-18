@@ -91,13 +91,14 @@ html {
 }
 
 body {
-  margin: 0;
   background-color: var(--color-background);
   color: var(--color-text);
   font-family: var(--font-family);
   font-size: var(--body-font-size-m);
   line-height: var(--body-line-height);
   letter-spacing: var(--body-letter-spacing);
+  max-width: 1440px;
+  margin: 0 auto;
 
   &.session {
     /* only allow font loading if a session */
