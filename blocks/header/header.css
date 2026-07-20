@@ -373,6 +373,29 @@ header .actions-section .default-content ul li + li {
   border-left: 1px solid rgb(102 102 102 / 60%);
 }
 
+/* Careers (3rd utility item) — external-link glyph. Languages (6th) — down
+   caret. Both hrefs are "#", so position is the only stable hook here. */
+header .actions-section .default-content ul li:nth-child(3) a::after {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-left: 6px;
+  vertical-align: -1px;
+  background-color: currentcolor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3zM19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+header .actions-section .default-content ul li:nth-child(6) a::after {
+  content: "";
+  display: inline-block;
+  margin-left: 8px;
+  border: 5px solid transparent;
+  border-top-color: currentcolor;
+  border-bottom: 0;
+  vertical-align: 2px;
+}
+
 /* Search: the last utility item renders as a rounded pill with a magnifier
    glyph rather than a plain link — no separator before it. */
 header .actions-section .default-content ul li:last-child {
