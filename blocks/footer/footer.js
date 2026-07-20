@@ -34,8 +34,7 @@ export default async function init(el) {
     for (const p of fragment.querySelectorAll('.section-column p strong')) {
       const key = p.textContent.trim().toLowerCase();
       const cls = iconMap[key];
-      if (!cls) continue;
-      const list = p.closest('p').nextElementSibling;
+      const list = cls && p.closest('p').nextElementSibling;
       if (list?.tagName === 'UL') list.classList.add('icon-list', cls);
     }
 
