@@ -255,8 +255,12 @@
 
     /* Anchor on the inner content cell — the deployed card.js doesn't always
        add .card-content-container. */
-    .card-inner > div {
+    .card-inner {
       padding: var(--spacing-xl) var(--spacing-l);
+    }
+
+    .card-inner > div {
+      padding: 0;
 
       h2,
       h3,
@@ -264,25 +268,25 @@
         margin-top: 0;
         color: var(--color-light);
       }
+    }
 
-      /* White outline button on the colored tile, centered. */
-      p:last-child:has(a) {
-        margin-bottom: 0;
-        margin-top: var(--spacing-l);
+    /* White outline button on the colored tile, centered. The CTA is a
+       sibling of the text cell (a direct child of .card-inner). */
+    .card-inner > p:has(a) {
+      margin: var(--spacing-l) 0 0;
 
-        a {
-          display: inline-block;
-          padding: 12px 28px;
-          border: 1px solid var(--color-light);
-          color: var(--color-light);
-          font-weight: var(--font-weight-regular);
-          text-decoration: none;
+      a {
+        display: inline-block;
+        padding: 12px 28px;
+        border: 1px solid var(--color-light);
+        color: var(--color-light);
+        font-weight: var(--font-weight-regular);
+        text-decoration: none;
 
-          &:hover,
-          &:focus {
-            background-color: var(--color-light);
-            color: var(--card-bg);
-          }
+        &:hover,
+        &:focus {
+          background-color: var(--color-light);
+          color: var(--card-bg);
         }
       }
     }
