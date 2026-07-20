@@ -307,8 +307,26 @@
       }
     }
 
+    /* Action tiles (no glyph) use a bold label with a trailing external-link
+       icon; the glyph promo tiles (myCancerConnection) keep the plain button. */
+    &:not([class*="glyph-"]) .card-inner > p:has(a) a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: var(--font-weight-bold);
+
+      &::after {
+        content: "";
+        width: 15px;
+        height: 15px;
+        background-color: currentcolor;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3zM19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2z'/%3E%3C/svg%3E") center / contain no-repeat;
+      }
+    }
+
     &.promo-purple { --card-bg: var(--color-mda-purple); }
     &.promo-black { --card-bg: var(--color-mda-promo-black); }
+    &.promo-blue { --card-bg: var(--color-mda-blue); }
 
     /* Optional white glyph above the heading (myCancerConnection, counseling).
        Author adds a glyph class alongside `promo`. Rendered as a masked SVG so
