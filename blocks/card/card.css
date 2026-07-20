@@ -73,7 +73,7 @@
 
     a {
       color: var(--card-cta-color);
-      font-weight: var(--font-weight-semibold);
+      font-weight: var(--font-weight-regular);
       text-decoration: underline;
       text-underline-offset: 2px;
 
@@ -271,7 +271,7 @@
 
         a {
           color: var(--color-light);
-          font-weight: var(--font-weight-semibold);
+          font-weight: var(--font-weight-regular);
         }
       }
     }
