@@ -77,13 +77,28 @@
 }
 
 .banner .banner-cta a {
-  display: inline-block;
-  padding: 12px 30px 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 200px;
+  padding: 16px 24px;
   border: 1px solid var(--banner-color);
   background: transparent;
   color: var(--banner-color);
   font-weight: var(--font-weight-regular);
+  text-align: center;
   text-decoration: none;
+
+  /* External-link glyph after the label (masked SVG, inherits text color). */
+  &::after {
+    content: "";
+    flex: none;
+    width: 15px;
+    height: 15px;
+    background-color: currentcolor;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3zM19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2z'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
 
   &:hover {
     background: var(--banner-color);
@@ -102,10 +117,6 @@
   .banner:not(.center):has(.banner-icon) {
     grid-template-areas: "icon content cta";
     grid-template-columns: auto 1fr auto;
-  }
-
-  .banner .banner-cta a {
-    white-space: nowrap;
   }
 }
 
