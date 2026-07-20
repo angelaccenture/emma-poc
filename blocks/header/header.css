@@ -458,7 +458,7 @@ header .actions-section .default-content ul li:last-child {
       margin: 0;
     }
 
-    img {
+    .default-content img {
       width: var(--logo-width);
       height: var(--logo-height);
     }
