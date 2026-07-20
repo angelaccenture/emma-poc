@@ -447,10 +447,6 @@ header .actions-section .default-content ul li:last-child {
     gap: 0;
   }
 
-  header .cta-section .default-content {
-    padding: 0 40px;
-  }
-
   header .brand-section {
     grid-area: brand;
 
