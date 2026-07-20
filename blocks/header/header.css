@@ -77,20 +77,21 @@ header {
       min-height: 40px;
       padding: 0 20px;
       display: flex;
-      align-items: center;
+      align-items: stretch;
       justify-content: flex-end;
     }
 
     ul {
       display: flex;
-      align-items: center;
+      align-items: stretch;
       gap: 0;
     }
 
     a {
-      display: block;
+      display: flex;
+      align-items: center;
       padding: 10px 20px;
-      color: var(--mda-red-link);
+      color: #fff;
       font-family: var(--mda-nav-font);
       font-size: 16px;
       text-decoration: none;
@@ -98,6 +99,23 @@ header {
       &:hover,
       &:focus {
         color: #fff;
+      }
+    }
+
+    /* Colored action buttons — matched by href so reordering the content
+       can't misalign them (semantic hook over positional nth-child). */
+    a[href*="appointments"] {
+      background-color: var(--mda-blue);
+      text-transform: uppercase;
+    }
+
+    a[href*="gifts"] {
+      background-color: var(--mda-purple);
+      text-transform: uppercase;
+
+      &::after {
+        content: "\2665"; /* ♥ */
+        margin-left: 10px;
       }
     }
   }
@@ -209,7 +227,8 @@ header {
        (placeholder content uses bare <li><a>; imported content uses <p><a>). */
     .main-nav-link,
     nav a {
-      display: block;
+      display: flex;
+      align-items: center;
       padding: 16px 20px;
       color: #fff;
       font-family: var(--mda-nav-font);
@@ -218,6 +237,16 @@ header {
       letter-spacing: -0.36px;
       text-transform: uppercase;
       text-decoration: none;
+
+      /* Down-caret drawn with a border triangle — no icon font, no extra
+         markup (pseudo-element per our design principles). */
+      &::after {
+        content: "";
+        margin-left: 10px;
+        border: 5px solid transparent;
+        border-top-color: currentcolor;
+        border-bottom: 0;
+      }
 
       &:hover,
       &:focus {
@@ -318,7 +347,9 @@ header {
    These target the utility nav (Clinical Trials, Locations, Careers, Contact
    Us, Our Doctors, Languages) which renders as plain links in the brand row. */
 header .brand-section nav a,
-header .brand-section .default-content ul a {
+header .brand-section .default-content ul a,
+header .actions-section .default-content ul a,
+header .actions-section .default-content ul strong {
   color: var(--mda-gray-text);
   font-family: var(--mda-body-font);
   font-size: 16px;
@@ -326,7 +357,7 @@ header .brand-section .default-content ul a {
   letter-spacing: -0.32px;
   text-transform: uppercase;
   text-decoration: none;
-  padding: 0 10px;
+  padding: 0 12px;
 
   &:hover,
   &:focus {
@@ -337,8 +368,36 @@ header .brand-section .default-content ul a {
 
 /* Vertical pipe separators between utility links (source uses 1px #666) */
 header .brand-section nav li + li,
-header .brand-section .default-content ul li + li {
+header .brand-section .default-content ul li + li,
+header .actions-section .default-content ul li + li {
   border-left: 1px solid rgb(102 102 102 / 60%);
+}
+
+/* Search: the last utility item renders as a rounded pill with a magnifier
+   glyph rather than a plain link — no separator before it. */
+header .actions-section .default-content ul li:last-child {
+  border-left: 0;
+  margin-left: 12px;
+
+  strong {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border: 1px solid rgb(102 102 102 / 60%);
+    border-radius: 4px;
+    color: var(--mda-gray-input);
+    font-family: var(--mda-body-font);
+    font-weight: 400;
+
+    &::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      background-color: currentcolor;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19zm-6 0A4.5 4.5 0 1 1 14 9.5 4.49 4.49 0 0 1 9.5 14'/%3E%3C/svg%3E") center / contain no-repeat;
+    }
+  }
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
