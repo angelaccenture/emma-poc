@@ -5,6 +5,9 @@
 .planlist {
   --planlist-rule: #d0d0ce;
   --planlist-arrow: var(--color-mda-red);
+
+  /* Breathing room so the rows + dividers sit inset from the column edges. */
+  padding-inline: var(--spacing-l);
 }
 
 .planlist .planlist-title {
