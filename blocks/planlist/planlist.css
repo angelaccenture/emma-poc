@@ -44,8 +44,8 @@
     border-bottom: 1px solid var(--planlist-rule);
   }
 
-  /* trailing red arrow-circle, vertically centered — white chevron glyph on a
-     red disc (background-image, no icon-font dependency). */
+  /* trailing red arrow-circle, vertically centered — red chevron glyph inside a
+     red outline ring (transparent fill, no icon-font dependency). */
   &::after {
     content: "";
     position: absolute;
@@ -54,12 +54,13 @@
     width: 28px;
     height: 28px;
     transform: translateY(-50%);
+    border: 1px solid var(--planlist-arrow);
     border-radius: 50%;
-    background-color: var(--planlist-arrow);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E");
+    background-color: transparent;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23da291c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 14px;
+    background-size: 12px;
     transition: transform 0.15s ease;
   }
 
@@ -70,19 +71,19 @@
 
 .planlist .planlist-item-title {
   display: block;
-  font-family: var(--font-family);
-  font-size: 0.875rem; /* 14px */
-  font-weight: var(--font-weight-regular);
-  letter-spacing: 0.04em;
+  font-family: "Arial Narrow", var(--font-family);
+  font-size: 1.125rem; /* 18px */
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.01em;
   text-transform: uppercase;
   color: var(--color-headings);
 }
 
 .planlist .planlist-item-desc {
   display: block;
-  margin-top: 6px;
-  font-size: 0.875rem; /* 14px */
-  line-height: 1.5;
+  margin-top: 8px;
+  font-size: 1.0625rem; /* 17px */
+  line-height: 1.45;
   color: var(--search-input-text, #605d5d);
 }
 
