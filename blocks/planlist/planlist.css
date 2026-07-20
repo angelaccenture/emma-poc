@@ -35,13 +35,14 @@
 .planlist .planlist-item {
   position: relative;
   display: block;
-  padding: var(--spacing-m) 48px var(--spacing-m) 0;
-  border-top: 1px solid var(--planlist-rule);
+  padding: var(--spacing-l) 48px var(--spacing-l) 0;
+  border-bottom: 1px solid var(--planlist-rule);
   color: inherit;
   text-decoration: none;
 
-  &:last-of-type {
-    border-bottom: 1px solid var(--planlist-rule);
+  /* First row sits flush under the title — no rule above it. */
+  &:first-of-type {
+    padding-top: 0;
   }
 
   /* trailing red arrow-circle, vertically centered — red chevron glyph inside a
