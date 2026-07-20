@@ -4,7 +4,8 @@
 .media {
   position: relative;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
   min-height: 480px;
   overflow: hidden;
   color: var(--color-light);
@@ -24,50 +25,64 @@
   object-fit: cover;
 }
 
-/* Dark scrim for legibility — stronger at the bottom where text sits. */
+/* Even dark scrim for legibility across the whole band. */
 .media::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(0deg, rgb(0 0 0 / 70%) 0%, rgb(0 0 0 / 20%) 45%, rgb(0 0 0 / 10%) 100%);
+  background: rgb(0 0 0 / 45%);
 }
 
 .media .media-content {
   position: relative;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: var(--content-max-width);
   max-width: 100%;
   margin: 0 auto;
   padding: var(--spacing-xl) var(--content-padding-inline);
+  text-align: center;
 }
 
 .media .media-heading {
   margin: 0;
-  max-width: 60%;
+  max-width: 90%;
   font-family: var(--font-family-heading);
   font-size: clamp(2rem, 4vw, 3rem); /* up to 48px */
   font-weight: var(--font-weight-regular);
-  line-height: 1.1;
+  line-height: 1.2;
   color: var(--color-light);
 }
 
-/* Play link — white serif label with a circular play-triangle glyph. */
+/* Thin divider between the heading and the play button. */
+.media .media-heading::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 1px;
+  margin: var(--spacing-m) auto 0;
+  background-color: rgb(255 255 255 / 70%);
+}
+
+/* Play button — standalone circular play-triangle glyph, no label text. */
 .media .media-cta {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
   margin-top: var(--spacing-m);
-  color: var(--color-light);
-  font-family: var(--font-family-heading);
-  font-size: 1.25rem;
+  font-size: 0; /* hide the "Watch the video" label, keep the glyph */
+  color: transparent;
   text-decoration: none;
 
   &::before {
     content: "";
-    width: 44px;
-    height: 44px;
-    border: 2px solid var(--color-light);
+    flex: none;
+    width: 48px;
+    height: 48px;
+    border: 2px solid rgb(255 255 255 / 80%);
     border-radius: 50%;
     background-color: transparent;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 7.5v9l7-4.5z'/%3E%3C/svg%3E");
@@ -77,12 +92,8 @@
     transition: background-color 0.15s ease;
   }
 
-  &:hover {
-    text-decoration: underline;
-
-    &::before {
-      background-color: rgb(255 255 255 / 20%);
-    }
+  &:hover::before {
+    background-color: rgb(255 255 255 / 20%);
   }
 }
 
