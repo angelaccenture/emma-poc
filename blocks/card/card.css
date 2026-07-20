@@ -185,9 +185,25 @@
   &.icon:not(:has(picture)) {
     --card-icon-color: var(--color-mda-red);
 
+    /* No card chrome — centered icon + title on the section background. */
+    border-radius: 0;
+    box-shadow: none;
+    background-color: transparent;
+    text-align: center;
+
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
     &.lightblue { --card-icon-color: var(--color-mda-lightblue); }
     &.green { --card-icon-color: var(--color-mda-green); }
     &.purple { --card-icon-color: var(--color-mda-purple); }
+
+    /* This treatment is icon + title only — hide the authored CTA link. */
+    .card-cta-container {
+      display: none;
+    }
 
     /* Anchor the circle on the heading's own cell (always present), so it
        doesn't depend on card.js adding .card-content-container. */
@@ -200,7 +216,7 @@
       display: block;
       width: 88px;
       height: 88px;
-      margin-bottom: var(--spacing-s);
+      margin: 0 auto var(--spacing-s);
       border-radius: 50%;
       background-color: var(--card-icon-color);
       background-repeat: no-repeat;
@@ -213,7 +229,7 @@
     }
 
     &.glyph-blog .card-inner > div:first-child::before {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 19.5A2.5 2.5 0 0 1 6.5 17H20'/%3E%3Cpath d='M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 5.5a17 17 0 0 1 10 2 17 17 0 0 1 10-2v12a17 17 0 0 0-10 2 17 17 0 0 0-10-2z'/%3E%3Cline x1='12' y1='7.5' x2='12' y2='19.5'/%3E%3C/svg%3E");
     }
 
     &.glyph-question .card-inner > div:first-child::before {
