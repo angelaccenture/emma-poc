@@ -92,7 +92,7 @@
   align-items: center;
   gap: 8px;
   color: var(--color-link);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-regular);
   text-decoration: none;
 
   /* Trailing arrow — matches the planlist footer link. */
