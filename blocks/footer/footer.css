@@ -118,8 +118,10 @@ footer {
     }
 
     .contact-line strong {
+      display: block;
       font-size: 20px;
       font-weight: 700;
+      white-space: nowrap;
     }
 
     .contact-phone a::before {
