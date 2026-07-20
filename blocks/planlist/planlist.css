@@ -13,6 +13,23 @@
   font-size: 2.25rem; /* 36px serif, matches section headings */
   font-weight: var(--font-weight-regular);
   color: var(--color-headings);
+  text-align: center;
+
+  /* Red disc with a white notebook glyph, centered above the heading text
+     (white stroke SVG on a red background — no icon-font or extra markup). */
+  &::before {
+    content: "";
+    display: block;
+    width: 96px;
+    height: 96px;
+    margin: 0 auto var(--spacing-s);
+    border-radius: 50%;
+    background-color: var(--color-mda-red);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='white' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='17' y='16' width='16' height='18' rx='2'/%3E%3Cpath d='M21 16v18'/%3E%3Cpath d='M33 19h2M33 22h2M33 25h2'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 44px;
+  }
 }
 
 .planlist .planlist-item {
