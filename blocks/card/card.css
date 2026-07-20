@@ -128,7 +128,7 @@
         font-size: 1.5rem; /* 24px */
         font-weight: var(--font-weight-bold);
         line-height: 1.2;
-        color: var(--color-mda-red);
+        color: var(--color-headings);
       }
 
       p {

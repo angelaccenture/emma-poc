@@ -234,38 +234,17 @@
   --carousel-dot-active: var(--color-mda-red, #da291c);
 }
 
-/* Hide play/pause in this style. */
-.advanced-carousel.dots .carousel-play-pause {
+/* Hide play/pause and the prev/next arrows — this style is dots-only. */
+.advanced-carousel.dots .carousel-play-pause,
+.advanced-carousel.dots .carousel-navigation-buttons > button {
   display: none;
 }
 
-/* Dots row sits centered below; prev sits far left, next far right. */
+/* Dots row sits centered below. */
 .advanced-carousel.dots .carousel-navigation-buttons {
   justify-content: center;
   gap: 12px;
   padding-top: 24px;
-}
-
-/* Prev/next: borderless chevrons in brand red (no gray circle). */
-.advanced-carousel.dots .carousel-navigation-buttons > button {
-  width: 32px;
-  height: 32px;
-  background-color: transparent;
-  border-radius: 0;
-}
-
-.advanced-carousel.dots .carousel-navigation-buttons > button:hover,
-.advanced-carousel.dots .carousel-navigation-buttons > button:focus-visible {
-  background-color: transparent;
-}
-
-.advanced-carousel.dots .carousel-navigation-buttons > button::after {
-  width: 12px;
-  height: 12px;
-  border-width: 3px;
-  border-color: var(--carousel-arrow);
-  border-bottom: 0;
-  border-left: 0;
 }
 
 /* Round page dots — idle gray, active brand red. */
