@@ -359,6 +359,7 @@
     line-height: 1;
     letter-spacing: -0.02em;
     color: var(--color-light);
+            padding-bottom: 20px;
   }
 
   /* Name / role caption — bold sans, tight stack under the title. */
