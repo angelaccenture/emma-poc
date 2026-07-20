@@ -1,7 +1,9 @@
 /* ── MD Anderson footer chrome ──────────────────────────────────────────────
    Visual design migrated from mdanderson.org's global footer.
    Structure (top → bottom), all painted full-bleed:
-     1. .section            → white mega-footer with link columns
+     1. .section-brand      → logo
+     1. .section-column     → white mega-footer link columns (Explore, About,
+                              Finding Your Way, Get in Touch)
      2. .section-legal      → light-gray utility/legal link bar
      3. .section-copyright  → black bottom bar (mission + copyright)
    Values are the exact computed styles extracted from the live source. */
@@ -10,7 +12,7 @@ footer {
   /* Footer-scoped brand tokens (MD Anderson healthcare design system).
      Kept local so the federated Microsoft palette in tokens.css is untouched. */
   --mda-red: #da291c;                 /* rgb(218 41 28) — social icons, hover, accents */
-  --mda-bar-dark: #000;               /* black subscribe / bottom bar */
+  --mda-bar-dark: #000;               /* black mission / bottom bar */
   --mda-bar-gray: rgb(242 243 244);   /* light-gray utility bar */
   --mda-link: #000;                   /* resting footer link color */
   --mda-copyright: rgb(188 190 192);  /* muted copyright gray */
@@ -44,24 +46,34 @@ footer {
     margin: 0 auto;
   }
 
+  /* ── 1. Brand logo ──────────────────────────────────────────────────────── */
+  .section-brand {
+    background-color: #fff;
+    padding: 40px 0 0;
+
+    img {
+      width: auto;
+      height: 64px;
+    }
+  }
+
   /* ── 1. Mega-footer link columns (white) ───────────────────────────────── */
-  .section:not(.section-legal, .section-copyright) {
+  .section-column {
     background-color: #fff;
     padding: 40px 0;
 
     /* Column headings: authored as <p><strong>…</strong></p> */
     p {
-      margin: 0 0 25px;
+      margin: 0 0 20px;
       font-size: 16px;
+      line-height: 1.3;
+    }
+
+    p:has(strong) {
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: -0.32px;
-      line-height: 1.3;
       color: var(--mda-link);
-    }
-
-    p strong {
-      font-weight: 700;
     }
 
     ul {
@@ -71,19 +83,101 @@ footer {
     }
 
     li {
-      margin: 0 0 12px;
+      margin: 0 0 16px;
     }
 
     a {
       font-size: 16px;
       line-height: 1.3;
     }
+
+    /* Get in Touch: Call + Ask a question sit beside a red circular glyph. */
+    .contact-line a {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: var(--mda-link);
+
+      &:hover {
+        text-decoration: none;
+
+        strong { text-decoration: underline; }
+      }
+
+      &::before {
+        content: "";
+        flex: none;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background-color: var(--mda-red);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 22px;
+      }
+    }
+
+    .contact-line strong {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .contact-phone a::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .58 3.6 1 1 0 0 1-.25 1z'/%3E%3C/svg%3E");
+    }
+
+    .contact-ask a::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3'/%3E%3Cline x1='12' y1='17' x2='12.01' y2='17'/%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3C/svg%3E");
+    }
   }
+
+  /* ── Icon grids: social + podcast (white glyph on a red square) ─────────── */
+  .icon-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 24px;
+    padding: 0;
+    list-style: none;
+
+    li { margin: 0; }
+
+    a {
+      display: block;
+      width: 32px;
+      height: 32px;
+      background-color: var(--mda-red);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 18px;
+      text-indent: -9999px;
+      overflow: hidden;
+
+      &:hover { opacity: 0.85; }
+    }
+  }
+
+  /* Social glyphs, matched by their href host. */
+  .social-icons a[href*="facebook"]  { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z'/%3E%3C/svg%3E"); }
+  .social-icons a[href*="twitter"], .social-icons a[href*="x.com"] { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M17.5 3h3.1l-6.8 7.7L22 21h-6.3l-4.9-6.4L5.1 21H2l7.3-8.3L2 3h6.4l4.4 5.9zm-1.1 16.1h1.7L7.7 4.8H5.9z'/%3E%3C/svg%3E"); }
+  .social-icons a[href*="youtube"]   { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M23 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.8-1.8C19.3 5 12 5 12 5s-7.3 0-8.8.5A2.5 2.5 0 0 0 1.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.8 1.8C4.7 19 12 19 12 19s7.3 0 8.8-.5a2.5 2.5 0 0 0 1.8-1.8C23 15.2 23 12 23 12zM9.7 15V9l5.2 3z'/%3E%3C/svg%3E"); }
+  .social-icons a[href*="instagram"] { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Crect x='3' y='3' width='18' height='18' rx='5'/%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cline x1='17.5' y1='6.5' x2='17.5' y2='6.5' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E"); }
+  .social-icons a[href*="linkedin"]  { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1a4.2 4.2 0 0 1 3.8-2.1c4 0 4.8 2.7 4.8 6.1V21h-4v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9z'/%3E%3C/svg%3E"); }
+  .social-icons a[href*="bsky"]      { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 10.8C10.9 8.6 7.9 4.7 5.1 4c-1.4-.3-2.1.4-2.1 1.9 0 1.5.9 6.1 1.4 6.9.9 1.4 2.6 1.6 4.2 1.4-2.6.4-3.5 2-2.1 3.6 2.7 3 4-.9 4.3-1.9l.2-.5.2.5c.3 1 1.6 4.9 4.3 1.9 1.4-1.6.5-3.2-2.1-3.6 1.6.2 3.3 0 4.2-1.4.5-.8 1.4-5.4 1.4-6.9 0-1.5-.7-2.2-2.1-1.9-2.8.7-5.8 4.6-6.9 6.8z'/%3E%3C/svg%3E"); }
+  .social-icons a[href*="threads"]   { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.8'%3E%3Cpath d='M12 21c-4.8 0-7.5-3.3-7.5-9S7.2 3 12 3c3.3 0 5.7 1.6 6.6 4.3M8.7 13.2c.4-2 2-2.9 3.8-2.9 2 0 3.3 1.2 3.3 3.5 0 2-1.3 3.4-3.4 3.4-1.7 0-2.6-1-2.6-2.1 0-1.3 1.2-1.9 2.7-1.9 3 0 4.7 1.6 4.7 4.3'/%3E%3C/svg%3E"); }
+
+  /* Podcast glyphs. */
+  .podcast-icons a[href*="apple"]    { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Ccircle cx='12' cy='9' r='3'/%3E%3Cpath d='M12 13.5c-2.2 0-4 1.4-4 3.2 0 1.3 1 2.3 4 2.3s4-1 4-2.3c0-1.8-1.8-3.2-4-3.2z'/%3E%3Cpath d='M12 2a10 10 0 0 0-4 19.2c-.3-.6-.4-1.3-.4-1.9A10 10 0 0 1 12 4a10 10 0 0 1 4.4 15.3c0 .6-.1 1.3-.4 1.9A10 10 0 0 0 12 2z'/%3E%3C/svg%3E"); }
+  .podcast-icons a[href*="spotify"]  { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm4.6 14.4a.6.6 0 0 1-.9.2c-2.4-1.5-5.4-1.8-9-1a.6.6 0 1 1-.3-1.2c3.9-.9 7.3-.5 10 1.1a.6.6 0 0 1 .2.9zm1.2-2.7a.8.8 0 0 1-1 .3c-2.7-1.7-6.9-2.2-10.1-1.2a.8.8 0 1 1-.4-1.5c3.7-1.1 8.3-.6 11.4 1.4a.8.8 0 0 1 .1 1zm.1-2.8C14.6 8.9 9.4 8.7 6.3 9.7a.9.9 0 1 1-.6-1.8c3.6-1.1 9.3-.9 13 1.3a.9.9 0 1 1-1 1.6z'/%3E%3C/svg%3E"); }
+  .podcast-icons a[href*="youtube"]  { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M23 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.8-1.8C19.3 5 12 5 12 5s-7.3 0-8.8.5A2.5 2.5 0 0 0 1.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.8 1.8C4.7 19 12 19 12 19s7.3 0 8.8-.5a2.5 2.5 0 0 0 1.8-1.8C23 15.2 23 12 23 12zM9.7 15V9l5.2 3z'/%3E%3C/svg%3E"); }
+  .podcast-icons a[href*="pandora"]  { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M6 3h7.5c3.6 0 6 2.3 6 5.8 0 3.6-2.5 5.9-6.2 5.9H10V21H6zm4 3.4v5h2.8c1.6 0 2.6-.9 2.6-2.5s-1-2.5-2.6-2.5z'/%3E%3C/svg%3E"); }
+  .podcast-icons a[href*="iheart"]   { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 21S3 14.5 3 8.8C3 5.6 5.4 3 8.5 3c1.8 0 3.1.9 3.5 1.5C12.4 3.9 13.7 3 15.5 3 18.6 3 21 5.6 21 8.8 21 14.5 12 21 12 21z'/%3E%3C/svg%3E"); }
+  .podcast-icons a[href*="cancerwise"], .podcast-icons a[href*="rss"] { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Ccircle cx='6.2' cy='17.8' r='2.2'/%3E%3Cpath d='M4 10.5a9.5 9.5 0 0 1 9.5 9.5h3A12.5 12.5 0 0 0 4 7.5zM4 4a16 16 0 0 1 16 16h3A19 19 0 0 0 4 1z'/%3E%3C/svg%3E"); }
 
   /* ── 2. Utility / legal bar (light gray) ────────────────────────────────── */
   .section-legal {
     background-color: var(--mda-bar-gray);
-    padding: 30px 0 40px;
+    padding: 30px 0;
 
     ul {
       margin: 0;
@@ -96,29 +190,38 @@ footer {
     }
 
     a {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--mda-link);
     }
   }
 
-  /* ── 3. Copyright / bottom bar (black) ──────────────────────────────────── */
+  /* ── 3. Copyright / mission bar (black) ─────────────────────────────────── */
   .section-copyright {
     background-color: var(--mda-bar-dark);
-    padding: 28px 0;
-    color: var(--mda-copyright);
+    padding: 48px 0;
+    color: #fff;
 
     p {
-      margin: 0;
-      font-size: 12px;
-      line-height: 1.3;
+      margin: 0 0 16px;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #fff;
+    }
+
+    /* "Making Cancer History®" — large serif lockup. */
+    p:first-child {
+      font-family: var(--font-family-heading);
+      font-size: 2.25rem;
+      line-height: 1.1;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+      font-size: 13px;
       color: var(--mda-copyright);
     }
 
     a {
-      color: var(--mda-copyright);
-    }
-
-    a:hover {
       color: #fff;
     }
   }
@@ -127,16 +230,35 @@ footer {
 /* ── Desktop layout (≥ 900px) ─────────────────────────────────────────────── */
 @media (width >= 900px) {
   footer {
-    /* Mega-footer: lay the heading/list pairs out as horizontal columns. */
-    .section:not(.section-legal, .section-copyright) .default-content {
+    /* Brand + the four link columns share one 5-column grid row. Pull the
+       columns up beside the logo via a shared grid on .footer-content. */
+    .footer-content {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0 48px;
-      align-items: start;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr 1.2fr;
+      column-gap: 40px;
+      max-width: var(--grid-container-width);
+      margin: 0 auto;
+      padding: 0 var(--content-padding-inline, 24px);
     }
 
-    .section:not(.section-legal, .section-copyright) ul {
-      margin-bottom: 24px;
+    .section-brand,
+    .section-column {
+      padding: 48px 0 24px;
+    }
+
+    /* Legal + copyright bars break out of the grid to span full width. */
+    .section-legal,
+    .section-copyright {
+      grid-column: 1 / -1;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+    }
+
+    .section-legal .default-content,
+    .section-copyright .default-content {
+      max-width: var(--grid-container-width);
+      margin: 0 auto;
+      padding: 0 var(--content-padding-inline, 24px);
     }
 
     /* Utility bar: single horizontal row with vertical-rule separators. */
@@ -159,10 +281,16 @@ footer {
       border-right: 0;
     }
 
-    /* Bottom bar: copyright right-aligned. */
+    /* Mission bar: serif lockup left, mission copy right. */
     .section-copyright .default-content {
-      display: flex;
-      justify-content: flex-end;
+      display: grid;
+      grid-template-columns: minmax(auto, 360px) 1fr;
+      column-gap: 56px;
+      align-items: start;
+    }
+
+    .section-copyright p:first-child {
+      grid-row: 1 / span 2;
     }
   }
 }
