@@ -111,8 +111,13 @@
       box-shadow: none;
     }
 
+    /* Source thumbnails are 308×218 (native ~7:5). Match that aspect exactly so
+       the image fills the full card width (~313px) crisp — no upscale, no crop —
+       instead of forcing a 16:9 box. aspect-ratio over the padding-bottom hack:
+       clearer intent, well-supported. */
     .card-picture-container {
-      padding-bottom: 56.25%; /* 16:9 image */
+      padding-bottom: 0;
+      aspect-ratio: 308 / 218;
     }
 
     /* Anchor on the content cell directly — the deployed card.js doesn't

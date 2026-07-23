@@ -2,6 +2,15 @@
   position: relative;
 }
 
+/* Breathing room between the section heading ("UT MD Anderson Highlights") and
+   the card row. Scoped to the carousel section so other H2s are untouched;
+   section top/bottom padding stays an author concern via section-metadata.
+   (.carouselSection is the camelCase class the carousel JS emits — not ours to rename.) */
+/* stylelint-disable-next-line selector-class-pattern */
+.carouselSection :is(h1, h2):first-child {
+  margin-bottom: var(--spacing-xl);
+}
+
 /* Hide all panels, show only the active one */
 .advanced-carousel [role="tabpanel"] {
   display: none;
