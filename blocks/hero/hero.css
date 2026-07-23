@@ -429,6 +429,39 @@
   }
 }
 
+/* Center variant — same full-bleed MD Anderson hero, but the overlaid text is
+   horizontally centered (heading, caption, CTA) instead of pinned left. The
+   base .hero.center rule doesn't reach here because the landing overrides own
+   the foreground layout, so it's re-declared scoped to the landing template. */
+.landing-template .hero.center {
+  .hero-foreground {
+    justify-content: center;
+  }
+
+  .fg-text {
+    text-align: center;
+  }
+
+  /* Centered text reads better full-width than capped at the left 60%. */
+  .hero-heading,
+  .fg-text p {
+    max-width: 100%;
+  }
+
+  /* The role-line underline hugs its text; keep it centered under the stack. */
+  .hero-heading + p + p:not(:has(a)) {
+    display: block;
+    width: fit-content;
+    margin-inline: auto;
+  }
+
+  /* Center the CTA link + trailing arrow. */
+  .fg-text p:has(a) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
 @media (width < 900px) {
   .landing-template .hero {
     --min-height: 320px;
