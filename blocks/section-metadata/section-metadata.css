@@ -88,6 +88,22 @@
     }
   }
 
+  /* intro — a large serif lead paragraph with a drop-cap first letter, for the
+     opening statement on a landing page (matches mdanderson.org's intro copy). */
+  &.intro .default-content p {
+    font-family: var(--font-family-heading);
+    font-size: var(--body-font-size-xxxl); /* 24px */
+    line-height: 1.5;
+    color: var(--color-text);
+
+    &::first-letter {
+      float: left;
+      margin-right: 0.08em;
+      font-size: 3.4em;
+      line-height: 0.8;
+    }
+  }
+
   > .default-content {
     margin-bottom: calc(var(--top-bottom-spacing) / 3);
 
