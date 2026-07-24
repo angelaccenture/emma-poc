@@ -112,6 +112,7 @@
   --color-mda-lightblue: #23b8f1;     /* section-icon light blue */
   --color-mda-blue: #3361ad;          /* appointment-bar blue band */
   --color-mda-green: #478339;         /* section-icon green */
+  --color-mda-orange: #e0670c;        /* feature-banner orange panel */
   --color-mda-promo-black: #000;      /* promo tile black */
   --color-link: var(--color-mda-red);
 
