@@ -164,7 +164,6 @@
   --feature-bg: var(--color-mda-orange);
 
   border-radius: 0;
-  background-color: var(--feature-bg);
   color: var(--color-light);
 
   .teaser-picture-container {
@@ -180,6 +179,7 @@
     padding: var(--spacing-xl);
     justify-content: center;
     gap: var(--spacing-l);
+    background-color: var(--feature-bg);
 
     h2,
     h3 {
