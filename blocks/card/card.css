@@ -275,9 +275,16 @@
     }
 
     /* Anchor on the inner content cell — the deployed card.js doesn't always
-       add .card-content-container. */
+       add .card-content-container. Generous vertical padding gives the tiles
+       their taller, less-wide proportions (matches mdanderson.org). */
     .card-inner {
-      padding: var(--spacing-xl) var(--spacing-l);
+      padding: var(--spacing-xxl) var(--spacing-l);
+
+      /* Neutralize the base auto/1fr/auto grid spacer that otherwise pushed the
+         CTA to the very bottom (the "extra space" below the button). Content
+         flows and centers vertically, matching mdanderson.org. */
+      grid-template-rows: none;
+      align-content: center;
     }
 
     .card-inner > div {
@@ -287,22 +294,30 @@
       h3,
       h4 {
         margin-top: 0;
+        margin-bottom: var(--spacing-s);
+        font-size: 1.5rem; /* 24px serif title, matches mdanderson.org */
+        line-height: 1.2;
         color: var(--color-light);
+      }
+
+      p {
+        margin: 0;
+        line-height: 1.4;
       }
     }
 
     /* White outline button on the colored tile, centered. The CTA is a
        sibling of the text cell (a direct child of .card-inner). */
     .card-inner > p:has(a) {
-      margin: var(--spacing-l) 0 0;
-      margin: 0 auto;
-                padding-top: 5%;
+      margin: var(--spacing-l) auto 0;
+      padding: 0;
 
       a {
         display: inline-block;
-        padding: 12px 28px;
+        padding: 14px 32px;
         border: 1px solid var(--color-light);
         color: var(--color-light);
+        font-size: 0.9375rem; /* 15px */
         font-weight: var(--font-weight-regular);
         text-decoration: none;
 
@@ -319,7 +334,7 @@
     &:not([class*="glyph-"]) .card-inner > p:has(a) a {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       font-weight: var(--font-weight-bold);
 
       &::after {
