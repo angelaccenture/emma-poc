@@ -94,7 +94,6 @@ main .section:has(.form) {
   /* Text block takes only what it needs; the form fills the rest. */
   main .section:has(.form) > .default-content {
     flex: none;
-    max-width: 14em;
     margin: 0;
   }
 
