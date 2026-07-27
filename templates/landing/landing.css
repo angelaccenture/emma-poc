@@ -43,7 +43,7 @@
   padding-inline: 0;
 }
 
-.landing-template main > .section.mediaareahead {
+.landing-template main > .section.mediaareahead .media-heading{
   max-width: 56%;
   padding-bottom: 20px;
 }
