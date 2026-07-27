@@ -91,6 +91,8 @@
   font-size: 0.875rem; /* 14px */
   line-height: 1.2;
   color: var(--search-input-text, #605d5d);
+      font-weight: normal;
+    padding-top: 10px;
 }
 
 /* Footer link — red bold with a trailing arrow. */
