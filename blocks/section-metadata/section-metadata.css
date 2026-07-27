@@ -95,7 +95,7 @@
     font-size: var(--body-font-size-xxxl); /* 24px */
     line-height: 1.5;
     color: var(--color-text);
-    padding: 3% 0;
+    padding: 3% 0 0 0;
 
     &::first-letter {
       float: left;
@@ -176,7 +176,7 @@
   }
   /*top/bottom margin*/
   &.margintb {
-    margin: 4% 0;
+    margin: 3% 0;
   }
 
   /* Pre-defined layouts */
