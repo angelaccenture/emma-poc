@@ -491,8 +491,11 @@ header .actions-section .default-content ul li:last-child {
       padding: 0 20px;
     }
 
+    /* Each item grows equally so the items span the full width of the red bar
+       instead of packing left and leaving empty space on the right. */
     .main-nav-item {
       display: flex;
+      flex: 1;
       align-items: stretch;
       border-bottom: 0;
       border-right: 1px solid rgb(255 255 255 / 25%);
@@ -502,9 +505,15 @@ header .actions-section .default-content ul li:last-child {
     nav a {
       display: flex;
       align-items: center;
+      width: 100%;
       padding: 0 20px;
       height: 100%;
       white-space: nowrap;
+
+      /* Push the caret to the right edge of each item box (label left). */
+      &::after {
+        margin-left: auto;
+      }
     }
 
     /* Dropdown menus anchor beneath the red bar */
