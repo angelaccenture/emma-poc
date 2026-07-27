@@ -66,16 +66,18 @@ header {
     border-bottom: 3px solid var(--mda-red);
   }
 
-  /* ── Top CTA strip: black bar, right-aligned red links ────────────────── */
+  /* ── Top CTA strip: right-aligned action buttons. The strip itself is
+     transparent so no black shows in the empty area or past the last button;
+     the black sits only behind the MyChart link. ──────────────────────────── */
   .cta-section {
     grid-area: cta;
-    background-color: var(--mda-black);
+    background-color: transparent;
 
     .default-content {
       max-width: none;
       margin: 0;
       min-height: 40px;
-      padding: 0 20px;
+      padding: 0;
       display: flex;
       align-items: stretch;
       justify-content: flex-end;
@@ -102,6 +104,11 @@ header {
       }
     }
 
+    /* MyChart (the non-button link) keeps the black background. */
+    a[href*="MyChart"] {
+      background-color: var(--mda-black);
+    }
+
     /* Colored action buttons — matched by href so reordering the content
        can't misalign them (semantic hook over positional nth-child). */
     a[href*="appointments"] {
@@ -112,6 +119,9 @@ header {
     a[href*="gifts"] {
       background-color: var(--mda-purple);
       text-transform: uppercase;
+
+      /* Rounded bottom-right corner, with the transparent page behind it. */
+      border-bottom-right-radius: var(--spacing-l);
 
       &::after {
         content: "\2665"; /* ♥ */
@@ -491,8 +501,11 @@ header .actions-section .default-content ul li:last-child {
       padding: 0 20px;
     }
 
+    /* Each item grows equally so the items span the full width of the red bar
+       instead of packing left and leaving empty space on the right. */
     .main-nav-item {
       display: flex;
+      flex: 1;
       align-items: stretch;
       border-bottom: 0;
       border-right: 1px solid rgb(255 255 255 / 25%);
@@ -502,9 +515,15 @@ header .actions-section .default-content ul li:last-child {
     nav a {
       display: flex;
       align-items: center;
+      width: 100%;
       padding: 0 20px;
       height: 100%;
       white-space: nowrap;
+
+      /* Push the caret to the right edge of each item box (label left). */
+      &::after {
+        margin-left: auto;
+      }
     }
 
     /* Dropdown menus anchor beneath the red bar */
