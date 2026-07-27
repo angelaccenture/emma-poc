@@ -33,15 +33,15 @@
 .search-widget .search-widget-title::before {
   content: "";
   display: block;
-  width: 88px;
-  height: 88px;
+  width: 108px;
+  height: 108px;
   margin-bottom: var(--spacing-s);
   margin-inline: auto;
   border-radius: 50%;
   background-color: var(--search-icon-color);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 44px 44px;
+  background-size: 52px 52px;
 
   /* white magnifier glyph */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
