@@ -104,9 +104,12 @@ header {
       }
     }
 
-    /* MyChart (the non-button link) keeps the black background. */
+    /* MyChart (the non-button link) keeps the black background, extended a bit
+       to its left, with a divider line on its left edge. */
     a[href*="MyChart"] {
       background-color: var(--mda-black);
+      padding-left: var(--spacing-xl);
+      border-left: 1px solid rgb(255 255 255 / 40%);
     }
 
     /* Colored action buttons — matched by href so reordering the content
@@ -498,7 +501,7 @@ header .actions-section .default-content ul li:last-child {
       flex-direction: row;
       align-items: stretch;
       height: 100%;
-      padding: 0 20px;
+      padding: 0 0 0 20px;
     }
 
     /* Each item grows equally so the items span the full width of the red bar
@@ -509,6 +512,11 @@ header .actions-section .default-content ul li:last-child {
       align-items: stretch;
       border-bottom: 0;
       border-right: 1px solid rgb(255 255 255 / 25%);
+
+      /* No divider on the last item — it sits flush to the right edge. */
+      &:last-child {
+        border-right: 0;
+      }
     }
 
     .main-nav-link,
