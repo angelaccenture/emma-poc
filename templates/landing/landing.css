@@ -34,3 +34,11 @@
   padding-block: 0;
   background-color: transparent;
 }
+
+/* no-band goes full-bleed: drop the 1440px content cap and side padding on the
+   inner content so an edge-to-edge image/block spans the viewport. */
+.landing-template main > .section.no-band > .default-content,
+.landing-template main > .section.no-band > .block-content {
+  max-width: none;
+  padding-inline: 0;
+}
