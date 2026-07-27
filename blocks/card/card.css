@@ -175,7 +175,7 @@
         object-fit: contain;
       }
       h3 {
-        font-size: 36px;
+        font-size: 36px !important;
       }
     }
 
