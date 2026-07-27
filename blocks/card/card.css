@@ -382,6 +382,10 @@
       .card-inner > div h3,
       .card-inner > div h4 {
         margin-bottom: var(--spacing-m);
+        font-size: 36px;
+      }
+      .card-inner > div p {
+        font-size: 21px;
       }
 
       .card-inner > p:has(a) {
@@ -389,6 +393,7 @@
 
         a {
           padding: var(--spacing-m) var(--spacing-xl);
+          font-size: 18px;
         }
       }
     }
