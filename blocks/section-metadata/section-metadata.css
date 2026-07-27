@@ -92,7 +92,7 @@
      opening statement on a landing page (matches mdanderson.org's intro copy). */
   &.intro .default-content p {
     font-family: var(--font-family-heading);
-    font-size: var(--body-font-size-xxxl); /* 24px */
+    font-size: 36px; /* 24px */
     line-height: 1.5;
     color: var(--color-text);
     padding: 3% 0 0 0;
