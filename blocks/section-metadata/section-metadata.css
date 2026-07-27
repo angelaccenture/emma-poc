@@ -110,6 +110,7 @@
   &.title h2 {
     padding-top: var(--spacing-xxl);
     padding-bottom: var(--spacing-xxl);
+    font-size: 42px;
   }
 
   > .default-content {
