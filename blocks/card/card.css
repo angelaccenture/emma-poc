@@ -109,6 +109,9 @@
     &:hover {
       transform: none;
       box-shadow: none;
+      h3 {
+        color: var(--color-link);
+      }
     }
 
     /* Source thumbnails are 308×218 (native ~7:5). Match that aspect exactly so
