@@ -415,5 +415,19 @@
         }
       }
     }
+    &.promo-lg {
+      max-width: 98%;
+      h3 {
+        font-size: 36px;
+      }
+      p {
+        font-size: 21px;
+      }
+      .card-inner {
+        adding: 25% var(--spacing-l);
+      }
+
+    }
   }
+  
 }
