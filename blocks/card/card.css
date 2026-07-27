@@ -498,11 +498,11 @@
       max-width: 98%;
 
       h3 {
-        font-size: 36px;
+        font-size: 36px !important;
       }
 
       p {
-        font-size: 21px;
+        font-size: 21px !important;
       }
 
       .card-inner {
