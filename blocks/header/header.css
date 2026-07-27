@@ -66,9 +66,10 @@ header {
     border-bottom: 3px solid var(--mda-red);
   }
 
-  /* ── Top CTA strip: right-aligned action buttons. The strip itself is
-     transparent so no black shows in the empty area or past the last button;
-     the black sits only behind the MyChart link. ──────────────────────────── */
+  /* ── Top CTA strip: right-aligned action buttons. The button row (ul) has a
+     black background spanning the whole group; the last item (Donate) is
+     overridden to transparent so its purple pill + rounded corner sit on the
+     transparent page, not on black. ──────────────────────────────────────── */
   .cta-section {
     grid-area: cta;
     background-color: transparent;
@@ -87,6 +88,13 @@ header {
       display: flex;
       align-items: stretch;
       gap: 0;
+      background-color: var(--mda-black);
+    }
+
+    /* Last item (Donate) opts out of the black so the rounded pill shows on
+       the transparent page behind it. */
+    li:last-child {
+      background-color: transparent;
     }
 
     a {
@@ -104,10 +112,8 @@ header {
       }
     }
 
-    /* MyChart (the non-button link) keeps the black background, extended a bit
-       to its left, with a divider line on its left edge. */
+    /* MyChart divider line on its left edge (black comes from the ul). */
     a[href*="MyChart"] {
-      background-color: var(--mda-black);
       padding-left: var(--spacing-xl);
       border-left: 1px solid rgb(255 255 255 / 40%);
     }
