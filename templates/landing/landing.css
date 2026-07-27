@@ -17,7 +17,7 @@
 /* Automatic zebra striping: even content sections get the gray band that
    fills the full viewport width while inner content stays in the 1440px
    column. Odd sections stay on the default (white) background. */
-.landing-template main > .section:nth-child(even) {
+.landing-template main > .gray {
   background-color: var(--color-mda-band-gray);
 }
 
