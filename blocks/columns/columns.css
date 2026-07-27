@@ -139,6 +139,7 @@
         font-family: var(--font-family-heading);
         font-weight: var(--font-weight-regular);
         color: var(--color-headings);
+        font-size: 36px;
       }
 
       a {
