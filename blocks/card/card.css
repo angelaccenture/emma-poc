@@ -156,6 +156,10 @@
   &.icon {
     --card-icon-size: 48px;
 
+    .card-inner {
+        font-size: 36px !important;
+    }
+
     .card-picture-container {
       position: static;
       padding: var(--spacing-default) var(--spacing-default) 0;
@@ -174,11 +178,7 @@
         height: var(--card-icon-size);
         object-fit: contain;
       }
-      &.card-inner {
-      h3 {
-        font-size: 36px !important;
-      }
-    }
+
     }
 
     /* Content already has its own top padding; tighten the gap under the icon. */
