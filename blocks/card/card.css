@@ -174,9 +174,11 @@
         height: var(--card-icon-size);
         object-fit: contain;
       }
+      &.card-inner {
       h3 {
         font-size: 36px !important;
       }
+    }
     }
 
     /* Content already has its own top padding; tighten the gap under the icon. */
