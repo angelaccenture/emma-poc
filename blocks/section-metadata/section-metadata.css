@@ -104,6 +104,13 @@
     }
   }
 
+  /* title — a standalone section heading (e.g. "UT MD Anderson Highlights")
+     that needs generous breathing room above and below, separating it from an
+     adjacent full-bleed section and the content row that follows. */
+  &.title {
+    padding-block: var(--spacing-xxl);
+  }
+
   > .default-content {
     margin-bottom: calc(var(--top-bottom-spacing) / 3);
 
