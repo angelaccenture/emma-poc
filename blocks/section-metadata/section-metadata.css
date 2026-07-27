@@ -107,7 +107,7 @@
   /* title — a standalone section heading (e.g. "UT MD Anderson Highlights")
      that needs generous breathing room above and below, separating it from an
      adjacent full-bleed section and the content row that follows. */
-  &.title {
+  &.title h2 {
     padding-top: var(--spacing-xxl);
     padding-bottom: var(--spacing-xxl);
   }
