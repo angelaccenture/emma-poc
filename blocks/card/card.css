@@ -295,6 +295,8 @@
        sibling of the text cell (a direct child of .card-inner). */
     .card-inner > p:has(a) {
       margin: var(--spacing-l) 0 0;
+      margin: 0 auto;
+                padding-top: 5%;
 
       a {
         display: inline-block;
