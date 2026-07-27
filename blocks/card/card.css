@@ -424,7 +424,7 @@
         font-size: 21px;
       }
       .card-inner {
-        adding: 25% var(--spacing-l);
+        padding: 25% var(--spacing-l);
       }
 
     }
