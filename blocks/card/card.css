@@ -109,6 +109,7 @@
     &:hover {
       transform: none;
       box-shadow: none;
+
       h3 {
         color: var(--color-link);
       }
@@ -281,6 +282,12 @@
        add .card-content-container. */
     .card-inner {
       padding: var(--spacing-xl) var(--spacing-l);
+
+      /* Neutralize the base auto/1fr/auto grid spacer that otherwise pushed the
+         CTA to the very bottom (the "extra space" below the button). Content
+         flows and centers vertically, matching mdanderson.org. */
+      grid-template-rows: none;
+      align-content: center;
     }
 
     .card-inner > div {
@@ -385,6 +392,7 @@
       .card-inner > div h3,
       .card-inner > div h4 {
         margin-bottom: var(--spacing-m);
+        font-size: 2.25rem; /* 36px, matches mdanderson.org promo tiles */
       }
 
       .card-inner > p:has(a) {
