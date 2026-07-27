@@ -108,7 +108,8 @@
      that needs generous breathing room above and below, separating it from an
      adjacent full-bleed section and the content row that follows. */
   &.title {
-    padding-block: var(--spacing-xxl);
+    padding-top: var(--spacing-xxl);
+    padding-bottom: var(--spacing-xxl);
   }
 
   > .default-content {
