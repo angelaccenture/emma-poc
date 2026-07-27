@@ -47,3 +47,13 @@
   max-width: 56%;
   padding-bottom: 20px;
 }
+
+/* A grid section nested inside no-band also goes full-bleed — the grid and its
+   block-content lose the content cap and left/right padding so it spans edge
+   to edge (e.g. a full-width image grid). */
+.landing-template main > .section.no-band .section.grid,
+.landing-template main > .section.no-band .section.grid > .default-content,
+.landing-template main > .section.no-band .section.grid > .block-content {
+  max-width: none;
+  padding-inline: 0;
+}
