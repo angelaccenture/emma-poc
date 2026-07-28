@@ -49,6 +49,11 @@
     padding-top: 0;
   }
 
+  /* Text wrapper groups the title + description; block flow so they stack. */
+  .planlist-item-text {
+    display: block;
+  }
+
   /* trailing red arrow-circle, vertically centered — red chevron glyph inside a
      thin red outline ring, matching the source's small circled-arrow glyph. */
   &::after {
@@ -119,4 +124,31 @@
   &:hover {
     text-decoration: underline;
   }
+}
+
+/* ── thumbnail variant ───────────────────────────────────────────────────────
+   Adds a leading thumbnail image to each row (e.g. donors "Your Gifts at Work":
+   a ~140×90 photo, then the uppercase title + gray description, with the same
+   trailing red arrow-circle). The item becomes a flex row: image | text. */
+.planlist.thumbnail .planlist-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-l);
+}
+
+.planlist.thumbnail .planlist-item-thumb {
+  flex: 0 0 auto;
+  width: 140px;
+
+  picture,
+  img {
+    display: block;
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+  }
+}
+
+.planlist.thumbnail .planlist-item-text {
+  flex: 1;
 }
