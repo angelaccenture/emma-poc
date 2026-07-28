@@ -41,8 +41,13 @@ export default function init(el) {
     item.className = 'planlist-item';
     if (link) item.href = link.getAttribute('href');
 
-    // Thumbnail (thumbnail variant): a picture in the row leads the item.
+    // Identify the picture cell (thumbnail variant) BEFORE moving anything, so
+    // the remaining cells still resolve to the title + description columns.
     const picture = row.querySelector('picture');
+    const pictureCell = picture ? cells.find((c) => c.contains(picture)) : null;
+    const textCells = cells.filter((c) => c !== pictureCell);
+
+    // Thumbnail (thumbnail variant): a picture in the row leads the item.
     if (picture) {
       const thumb = document.createElement('span');
       thumb.className = 'planlist-item-thumb';
@@ -55,7 +60,6 @@ export default function init(el) {
     text.className = 'planlist-item-text';
 
     // Title + description live in the non-picture cells.
-    const textCells = cells.filter((c) => !c.querySelector('picture'));
     const titleCell = textCells[0];
     const descCell = textCells[1];
 
