@@ -1,4 +1,5 @@
 import { loadArea, setConfig, getConfig, getMetadata } from './ak.js';
+import { getSite } from './sites.js';
 
 const hostnames = ['authorkit.dev'];
 
@@ -38,7 +39,8 @@ const decorateArea = ({ area = document }) => {
 // Runs as progressive enhancement after the area is decorated, so it never
 // blocks the render/LCP. Mirrors ak.js loadTemplate()'s name normalization.
 async function loadTemplateScript() {
-  const meta = getMetadata('template');
+  // Path decides the template (see scripts/sites.js); explicit metadata wins.
+  const meta = getMetadata('template') || getSite().template;
   if (!meta) return;
   const template = meta.replaceAll(' ', '-').toLowerCase();
   const { codeBase } = getConfig();

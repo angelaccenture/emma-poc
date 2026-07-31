@@ -10,6 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
+import { getSite } from './sites.js';
+
 const LOG = async (ex, el) => (await import('./utils/error.js')).default(ex, el);
 
 export function getMetadata(name) {
@@ -89,7 +91,8 @@ export async function loadBlock(block) {
 }
 
 function loadTemplate() {
-  const meta = getMetadata('template');
+  // Path decides the template (see scripts/sites.js); explicit metadata wins.
+  const meta = getMetadata('template') || getSite().template;
   if (!meta) return;
   const template = meta.replaceAll(' ', '-').toLowerCase();
   const { codeBase } = getConfig();
@@ -311,7 +314,8 @@ function decorateSections(parent, isDoc) {
 function decorateHeader() {
   const header = document.querySelector('header');
   if (!header) return;
-  const meta = getMetadata('header') || 'header';
+  // Path decides the header block (see scripts/sites.js); explicit metadata wins.
+  const meta = getMetadata('header') || getSite().header;
   if (meta === 'off') {
     document.body.classList.add('no-header');
     header.remove();
