@@ -1,0 +1,114 @@
+/* header-sap — SAP-style minimal header (sitetwo).
+   Dark bar: brand logo left, hamburger toggle right. On open, the nav panel
+   drops down. Distinct from the MD Anderson header on purpose. */
+header.header-sap {
+  --header-sap-bg: #0a0a0a;
+  --header-sap-fg: #fff;
+  --header-sap-accent: #0070f2; /* SAP blue */
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 72px;
+  padding: 0 var(--spacing-l, 24px);
+  background-color: var(--header-sap-bg);
+  color: var(--header-sap-fg);
+}
+
+header.header-sap a {
+  color: var(--header-sap-fg);
+  text-decoration: none;
+}
+
+/* Brand — the logo/wordmark on the left. */
+header.header-sap .header-sap-brand {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold, 700);
+  letter-spacing: 0.02em;
+}
+
+header.header-sap .header-sap-brand img {
+  max-height: 32px;
+  width: auto;
+}
+
+/* Nav — hidden behind the toggle; drops down as a panel when open. */
+header.header-sap .header-sap-nav {
+  position: absolute;
+  inset: 72px 0 auto;
+  display: none;
+  padding: var(--spacing-m, 12px) var(--spacing-l, 24px);
+  background-color: var(--header-sap-bg);
+  border-top: 1px solid rgb(255 255 255 / 15%);
+}
+
+header.header-sap.is-open .header-sap-nav {
+  display: block;
+}
+
+header.header-sap .header-sap-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-m, 12px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+header.header-sap .header-sap-nav-list a:hover {
+  color: var(--header-sap-accent);
+}
+
+/* Hamburger toggle. */
+header.header-sap .header-sap-toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  padding: 6px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+header.header-sap .header-sap-toggle span {
+  display: block;
+  height: 2px;
+  background-color: var(--header-sap-fg);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+header.header-sap.is-open .header-sap-toggle span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+header.header-sap.is-open .header-sap-toggle span:nth-child(2) {
+  opacity: 0;
+}
+
+header.header-sap.is-open .header-sap-toggle span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Desktop: show nav inline, hide the toggle. */
+@media (width >= 900px) {
+  header.header-sap .header-sap-toggle {
+    display: none;
+  }
+
+  header.header-sap .header-sap-nav {
+    position: static;
+    display: block;
+    padding: 0;
+    border-top: 0;
+  }
+
+  header.header-sap .header-sap-nav-list {
+    flex-direction: row;
+    gap: var(--spacing-l, 24px);
+  }
+}

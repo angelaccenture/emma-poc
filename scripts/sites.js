@@ -21,7 +21,7 @@ const ROOT = { header: 'off', footer: 'off', template: null };
 
 const SITES = {
   siteone: { header: 'header', footer: 'footer', template: 'landing' },
-  sitetwo: { header: 'header minimal', footer: 'footer mega', template: 'sitetwo' },
+  sitetwo: { header: 'header-sap', footer: 'footer-sap', template: null },
   // sitethree: { … } — add when its design is known.
 };
 

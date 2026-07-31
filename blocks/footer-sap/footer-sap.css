@@ -1,0 +1,132 @@
+/* footer-sap — SAP-style mega footer (sitetwo).
+   Dark footer with multi-column link groups (accordion on mobile), then a
+   legal/copyright + social row. Distinct from the MD Anderson footer. */
+footer.footer-sap {
+  --footer-sap-bg: #0a0a0a;
+  --footer-sap-fg: #fff;
+  --footer-sap-muted: rgb(255 255 255 / 70%);
+  --footer-sap-rule: rgb(255 255 255 / 15%);
+  --footer-sap-accent: #0070f2;
+
+  background-color: var(--footer-sap-bg);
+  color: var(--footer-sap-fg);
+}
+
+footer.footer-sap a {
+  color: var(--footer-sap-muted);
+  text-decoration: none;
+}
+
+footer.footer-sap a:hover {
+  color: var(--footer-sap-fg);
+}
+
+footer.footer-sap .footer-sap-content {
+  max-width: var(--content-max-width, 1440px);
+  margin: 0 auto;
+  padding: var(--spacing-xl, 32px) var(--spacing-l, 24px);
+}
+
+/* Column groups. */
+footer.footer-sap .footer-sap-column {
+  border-bottom: 1px solid var(--footer-sap-rule);
+}
+
+footer.footer-sap .footer-sap-column-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--spacing-m, 12px) 0;
+  border: 0;
+  background: transparent;
+  color: var(--footer-sap-fg);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: var(--font-weight-bold, 700);
+  text-align: left;
+  cursor: pointer;
+}
+
+/* Chevron on the toggle (mobile accordion affordance). */
+footer.footer-sap .footer-sap-column-toggle::after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background-color: currentcolor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  transition: transform 0.2s ease;
+}
+
+footer.footer-sap .footer-sap-column.is-open .footer-sap-column-toggle::after {
+  transform: rotate(180deg);
+}
+
+footer.footer-sap .footer-sap-column-list {
+  display: none;
+  margin: 0;
+  padding: 0 0 var(--spacing-m, 12px);
+  list-style: none;
+}
+
+footer.footer-sap .footer-sap-column.is-open .footer-sap-column-list {
+  display: block;
+}
+
+footer.footer-sap .footer-sap-column-list li {
+  padding: 6px 0;
+}
+
+/* Legal / copyright + social strip. */
+footer.footer-sap .footer-sap-legal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-m, 12px);
+  padding-top: var(--spacing-l, 24px);
+  color: var(--footer-sap-muted);
+  font-size: 0.875rem;
+}
+
+footer.footer-sap .footer-sap-legal ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-m, 12px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Desktop: columns sit side by side, always expanded; no accordion. */
+@media (width >= 900px) {
+  footer.footer-sap .footer-sap-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-l, 24px);
+  }
+
+  footer.footer-sap .footer-sap-column {
+    border-bottom: 0;
+  }
+
+  footer.footer-sap .footer-sap-column-toggle {
+    padding-top: 0;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  footer.footer-sap .footer-sap-column-toggle::after {
+    display: none;
+  }
+
+  footer.footer-sap .footer-sap-column-list {
+    display: block;
+  }
+
+  footer.footer-sap .footer-sap-legal {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--footer-sap-rule);
+  }
+}
